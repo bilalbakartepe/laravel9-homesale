@@ -14,9 +14,17 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index');
 });
-Route::get('/home',[HomeController::class, "index"]);
+Route::get('/home',function(){
+    return view('home.index');
+});
+Route::get('/about',function(){
+    return view('about');
+});
+Route::get('/contact',function(){
+    return view('contact');
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
