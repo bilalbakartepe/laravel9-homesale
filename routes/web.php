@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
+use App\Http\Controllers\AdminPanel\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,5 +31,8 @@ Route::get('/contact',function(){
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-
+///////////////////////////////Admin Page////////////////////////////////
 Route::get('/admin',[AdminHomeController::class,'index'])->name('admin');
+/////////////////////////Category admin/////////////
+Route::get('/admin/category',[CategoryController::class,'index'])->name('admin_category');
+Route::get('/admin/category/create',[CategoryController::class,'create'])->name('admin_category_create');
