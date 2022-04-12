@@ -28,26 +28,33 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table class="table table-bordered">
-                    <tbody><tr>
+                    <tbody>
+                    <tr>
                       <th style="width: 10px">#</th>
                       <th>Title</th>
                       <th>Keywords</th>
                       <th>Description</th>
                       <th>Image</th>
                       <th>Status</th>
-                      <th style="width: 40px">Label</th>
                     </tr>
                   @foreach($data as $rs)
                     <tr>
-                      <td>$rs->id</td>
-                      <td>$rs->title</td>
-                      <td>$rs->keywords</td>
-                      <td>$rs->description</td>
-                      <td>$rs->image</td>
-                      <td>$rs->status</td>
-                      <td><a href="/admin/category/edit">Edit</a></td>
-                      <td><a href="/admin/category/delete">Delete</a></td>
-                      <td><a href="/admin/category/Show">Show</a></td>
+                      <td>{{$rs->id}}</td>
+                      <td>{{$rs->title}}</td>
+                      <td>{{$rs->keywords}}</td>
+                      <td>{{$rs->description}}</td>
+                      <td>{{$rs->image}}</td>
+                      <td>{{$rs->status}}</td>
+                      <td>                    
+                        <a href="/admin/category/edit" >
+                        <i class="fa fa-fw fa-edit"></i> Edit</a></td>
+                      <td>
+                      <a href="/admin/category/delete">
+                        <i class="fa fa-fw fa-ban"></i>Delete</div>
+                        
+                      <td>
+                      <a href="/admin/category/Show">
+                        <i class="fa fa-fw fa-bars"></i> Show</a></td>
                     </tr>
                   @endforeach
                   </tbody></table>
