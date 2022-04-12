@@ -27,21 +27,21 @@
                   @csrf
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Title</label>
-                      <input type="text" class="form-control" id="title" placeholder="title">
+                      <label for="title">Title</label>
+                      <input type="text" class="form-control" id="title" name="title">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Keywords</label>
-                      <input type="text" class="form-control" id="keywords" placeholder="keywords">
+                      <label for="keywords">Keywords</label>
+                      <input type="text" class="form-control" id="keywords" name="keywords">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Descripton</label>
-                      <input type="text" class="form-control" id="descripton" placeholder="descripton">
+                      <label for="descripton">Descripton</label>
+                      <input type="text" class="form-control" id="descripton" name="descripton">
                     </div>
 
                     
                     <div class="form-group">
-                      <label for="exampleInputFile">Image</label>
+                      <label>Image</label>
                       <input type="file" name="image">
                       
                     </div>
@@ -49,7 +49,7 @@
 
                     <div class="checkbox">
                       <label>Status</label>
-                      <select class="form-control" name="selection">
+                      <select class="form-control" name="status">
                           <option>true</option>
                           <option>false</option>
                         </select>

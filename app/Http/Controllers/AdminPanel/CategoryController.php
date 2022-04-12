@@ -36,7 +36,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        echo $request;
+        $data=new Category();
+        $data->parentid=0;
+        $data->title = $request->title;
+        $data->keywords = $request->keywords;
+        $data->description = $request->description;
+        $data->status = $request->status;
+        $data->save();
+
+        return redirect("/admin/category");
     }
 
     /**

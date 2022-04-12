@@ -23,20 +23,43 @@
 
           <!-- Default box -->
           <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Title</h3>
-              <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                <div class="box-header">
+                  <h3 class="box-title">Bordered Table</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table class="table table-bordered">
+                    <tbody><tr>
+                      <th style="width: 10px">#</th>
+                      <th>Title</th>
+                      <th>Keywords</th>
+                      <th>Description</th>
+                      <th>Image</th>
+                      <th>Status</th>
+                      <th style="width: 40px">Label</th>
+                    </tr>
+                    <tr>
+                      <td>1.</td>
+                      <td>Update software</td>
+                      <td>
+                        <div class="progress progress-xs">
+                          <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                        </div>
+                      </td>
+                      <td><span class="badge bg-red">55%</span></td>
+                    </tr>
+                    
+                  </tbody></table>
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix">
+                  <ul class="pagination pagination-sm no-margin pull-right">
+                    <li><a href="#">«</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">»</a></li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div class="box-body">
-              Start creating your amazing application!
-            </div><!-- /.box-body -->
-            <div class="box-footer">
-              Footer
-            </div><!-- /.box-footer-->
-          </div><!-- /.box -->
 
         </section><!-- /.content -->
 @endsection
