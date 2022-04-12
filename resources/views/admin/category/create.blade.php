@@ -5,46 +5,59 @@
 
 @section('content')
 <div class="content-wrapper">
-        <!-- Main content -->
-        <section class="content">
-
-          <!-- Default box -->
-          <div class="box">
+          <!-- Content Header (Page header) -->
+          <section class="content-header">
+            <h1>
+              Add Category
+              <small>it all starts here</small>
+            </h1>
+              <ol class="breadcrumb float-sm-right">
+                <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a>Add Category</a></li>
+              </ol>
             
+          </section>
+          <br>
           <div class="box box-primary">
                 <div class="box-header">
                   <h3 class="box-title">Quick Example</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form">
+                <form role="form" action="/admin/category/store" method="post">
+                  @csrf
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                      <label for="exampleInputEmail1">Title</label>
+                      <input type="text" class="form-control" id="title" placeholder="title">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      <label for="exampleInputPassword1">Keywords</label>
+                      <input type="text" class="form-control" id="keywords" placeholder="keywords">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputFile">File input</label>
-                      <input type="file" id="exampleInputFile">
-                      <p class="help-block">Example block-level help text here.</p>
+                      <label for="exampleInputEmail1">Descripton</label>
+                      <input type="text" class="form-control" id="descripton" placeholder="descripton">
                     </div>
+
+                    
+                    <div class="form-group">
+                      <label for="exampleInputFile">Image</label>
+                      <input type="file" name="image">
+                      
+                    </div>
+
+
                     <div class="checkbox">
-                      <label>
-                        <input type="checkbox"> Check me out
-                      </label>
+                      <label>Status</label>
+                      <select class="form-control" name="selection">
+                          <option>true</option>
+                          <option>false</option>
+                        </select>
                     </div>
                   </div><!-- /.box-body -->
 
                   <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                   </div>
-                </form>
-              </div><!-- /.box -->
-
-          </div><!-- /.box -->
-
-        </section><!-- /.content -->
+            </div>
 @endsection

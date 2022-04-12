@@ -1,4 +1,5 @@
-<div id="header-carousel" class="carousel slide" data-ride="carousel">
+<div class="col-lg-9">
+    <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active" style="height: 410px;">
                             <img class="img-fluid" src="{{asset('assets')}}/img/carousel-1.jpg" alt="Image">
@@ -35,3 +36,4 @@
             </div>
         </div>
     </div>
+</div>

@@ -27,5 +27,5 @@
                     </div>
                 </nav>
             </div>
-            <div class="col-lg-9">
+            
                
