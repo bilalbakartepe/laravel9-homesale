@@ -62,8 +62,8 @@
                         <a href="/admin/category/edit/{{$rs->id}}" >
                         <i class="fa fa-fw fa-edit"></i> Edit</a></td>
                       <td>
-                      <a href="/admin/category/delete/{{$rs->id}}">
-                        <i class="fa fa-fw fa-ban"></i>Delete</div>
+                      <a href="/admin/category/destroy/{{$rs->id}}" onclick="return confirm('Are you sure for deleting ?')">
+                        <i class="fa fa-fw fa-ban"></i>Delete</a>
                         
                       <td>
                       <a href="/admin/category/show/{{$rs->id}}">
