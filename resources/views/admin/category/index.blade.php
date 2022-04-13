@@ -8,13 +8,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Blank page
-            <small>it all starts here</small>
+            Categories
+            <small>You can see all categories right below</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Examples</a></li>
-            <li class="active">Blank page</li>
+            <li><a href="#">Categories</a></li>
           </ol>
         </section>
 
@@ -24,7 +23,7 @@
           <!-- Default box -->
           <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Bordered Table</h3>
+                  <h3 class="box-title">Category List</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table class="table table-bordered">
@@ -46,14 +45,14 @@
                       <td>{{$rs->image}}</td>
                       <td>{{$rs->status}}</td>
                       <td>                    
-                        <a href="/admin/category/edit" >
+                        <a href="/admin/category/edit/{{$rs->id}}" >
                         <i class="fa fa-fw fa-edit"></i> Edit</a></td>
                       <td>
-                      <a href="/admin/category/delete">
+                      <a href="/admin/category/delete/{{$rs->id}}">
                         <i class="fa fa-fw fa-ban"></i>Delete</div>
                         
                       <td>
-                      <a href="/admin/category/Show">
+                      <a href="/admin/category/show/{{$rs->id}}">
                         <i class="fa fa-fw fa-bars"></i> Show</a></td>
                     </tr>
                   @endforeach
