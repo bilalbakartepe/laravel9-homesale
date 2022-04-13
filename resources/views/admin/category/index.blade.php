@@ -12,7 +12,7 @@
             <small>You can see all categories right below</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#"><i class="fa fa-fw fa-home"></i> Home</a></li>
             <li><a href="#">Categories</a></li>
           </ol>
         </section>
@@ -30,7 +30,9 @@
 
             </div>
           </div>
-        
+        <br>
+
+          
         
         <!-- Default box -->
           <div class="box">
