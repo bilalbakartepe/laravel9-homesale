@@ -23,7 +23,7 @@
                   <h3 class="box-title">Quick Example</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" action="/admin/category/store" method="post">
+                <form role="form" action="/admin/category/store" method="post" enctype="multipart/form-data">
                   @csrf
                   <div class="box-body">
                     <div class="form-group">
