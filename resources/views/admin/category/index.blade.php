@@ -20,7 +20,19 @@
         <!-- Main content -->
         <section class="content">
 
-          <!-- Default box -->
+          <div>
+            <div class="row">
+              <div class="col-sm-3">
+                <a href="/admin/category/create" class="btn btn-block btn-primary btn-lg">
+                  Add Category
+                </a>
+              </div>
+
+            </div>
+          </div>
+        
+        
+        <!-- Default box -->
           <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Category List</h3>
