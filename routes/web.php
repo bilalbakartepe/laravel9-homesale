@@ -5,6 +5,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
 use App\Http\Controllers\AdminPanel\CategoryController;
 use App\Http\Controllers\AdminPanel\AdminHomeController as AdminHouseController;
+use App\Http\Controllers\AdminPanel\ImageController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,5 +60,17 @@ Route::prefix('admin')->name('admin')->group(function(){
         Route::get('/show/{id}','show')->name('show');
         Route::get('/destroy/{id}','destroy')->name('destroy');
     });
+
+    /*              Images                  */
+
+    Route::prefix('image')->name('image')->controller(ImageController::class)->group(function(){
+        Route::get('/{pid}','index')->name('index');
+        Route::get('/create/{pid}','create')->name('create');
+        Route::post('/store/{pid}','store')->name('store');
+        Route::post('/update/{pid}/{id}','update')->name('update');
+        Route::get('/destroy/{pid}/{id}','destroy')->name('destroy');
+    });
+
+
 });
 

@@ -1,11 +1,13 @@
 @extends('layouts.adminbase')
 
-@section('tittle', "Agent Admin Panel House")
+@section('tittle', "Agent Admin Panel House Image Gallery")
 
 
 @section('content')
 <div class="content-wrapper">
         <!-- Content Header (Page header) -->
+
+        
         <section class="content-header">
           <h1>
             Houses
@@ -37,26 +39,23 @@
         <!-- Default box -->
           <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">House List</h3>
+                  <h3 class="box-title">House Image List</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table class="table table-bordered">
                     <tbody>
                     <tr>
                       <th style="width: 10px">ID</th>
-                      <th>Category</th>
+                      
                       <th>Title</th>
                       <th>Image</th>
-                      <th>Size</th>
-                      <th>Price</th>
-                      <th>Location</th>
                       <th>Status</th>
                     </tr>
                   @foreach($data as $rs)
                     <tr>
                       <td>{{$rs->id}}</td>
-                      <td>{{\app\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs->category,$rs->category->title)}}</td>
                       <td>{{$rs->title}}</td>
+
                       <td>@if($rs->image)
                             <img src="{{Storage::url($rs->image)}}" style="height: 40px">
                           @endif
@@ -67,23 +66,14 @@
                       <td>{{$rs->price}}</td>
                       <td>{{$rs->location}}</td>
                       <td>{{$rs->status}}</td>
-                      <td>
-                        <a href="/admin/house/index/{{$rs->id}}"
-                        onclick="return !window.open(this.href,'','top=50 left=100 width=1100,height=700')">
-                        <img src="{{asset('assets'}}/admin/img/gallery.png" style="height: 40px">
-                        </a>
-                      </td>
+                      <td><img src="{{asset('assets'}}/admin/img/gallery.png" style="height: 40px"></td>
                       <td>                    
                         <a href="/admin/house/edit/{{$rs->id}}" >
                         <i class="fa fa-fw fa-edit"></i> Edit</a></td>
                       <td>
                       <a href="/admin/house/destroy/{{$rs->id}}" onclick="return confirm('Are you sure for deleting ?')">
                         <i class="fa fa-fw fa-ban"></i>Delete</a>
-                        
-                      <td>
-                      <a href="/admin/house/show/{{$rs->id}}">
-                        <i class="fa fa-fw fa-bars"></i> Show</a></td>
-                    </tr>
+                      
                   @endforeach
                   </tbody></table>
                 </div><!-- /.box-body -->
