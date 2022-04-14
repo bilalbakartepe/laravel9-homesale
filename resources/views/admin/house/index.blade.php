@@ -55,7 +55,7 @@
                   @foreach($data as $rs)
                     <tr>
                       <td>{{$rs->id}}</td>
-                      <td>{{\app\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}</td>
+                      <td>{{\app\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs->category,$rs->category->title)}}</td>
                       <td>{{$rs->title}}</td>
                       <td>@if($rs->image)
                             <img src="{{Storage::url($rs->image)}}" style="height: 40px">

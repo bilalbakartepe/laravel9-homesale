@@ -66,7 +66,7 @@
                     <tr><td>Description     </td><td>{{$data->description}}</td></tr>
                     <tr><td>Image           </td><td>{{$data->image}}</td></tr>
                     <tr><td>Status          </td><td>{{$data->status}}</td></tr>
-                    <tr><td>Category        </td><td>{{\app\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}</td></tr>
+                    <tr><td>Category        </td><td>{{\app\Http\Controllers\AdminPanel\CategoryController::getParentsTree($data->category,$data->category->title)}}</td></tr>
                     <tr><td>Detail          </td><td>{{$data->detail}}</td></tr>
                     <tr><td>Location        </td><td>{{$data->location}}</td></tr>
                     <tr><td>Heating         </td><td>{{$data->heating}}</td></tr>
