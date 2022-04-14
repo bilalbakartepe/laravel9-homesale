@@ -43,21 +43,23 @@
                   <table class="table table-bordered">
                     <tbody>
                     <tr>
-                      <th style="width: 10px">#</th>
+                      <th style="width: 10px">ID</th>
+                      <th>Parent</th>
                       <th>Title</th>
-                      <th>Keywords</th>
-                      <th>Description</th>
                       <th>Image</th>
                       <th>Status</th>
                     </tr>
                   @foreach($data as $rs)
                     <tr>
                       <td>{{$rs->id}}</td>
+                      <td>{{\app\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}</td>
                       <td>{{$rs->title}}</td>
-                      <td>{{$rs->keywords}}</td>
-                      <td>{{$rs->description}}</td>
-                      <td>{{$rs->image}}</td>
-                      <td>{{$rs->status}}</td>
+                      <td>@if($rs->image)
+                            <img src="{{Storage::url($rs->image)}}" style="height: 40px">
+                          @endif
+                      
+                        </td>
+                            <td>{{$rs->status}}</td>
                       <td>                    
                         <a href="/admin/category/edit/{{$rs->id}}" >
                         <i class="fa fa-fw fa-edit"></i> Edit</a></td>

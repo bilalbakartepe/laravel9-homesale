@@ -22,10 +22,21 @@
                   <h3 class="box-title">Edit & Update</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" action="/admin/category/update/{{$data->id}}" method="post">
+                <form role="form" action="/admin/category/update/{{$data->id}}" method="post" enctype="multipart/form-data">
                   @csrf
                   <div class="box-body">
                     <div class="form-group">
+
+                    <label >Parent Category</label>
+
+                      <select name="parent_id" class="form-control">
+                        <option value="0" selected="selected">Main Category</option>
+                        @foreach($datalist as $rs)
+                          <option value="{{$rs->id}}" @if($rs->id==$data->parentid) selected="selected" @endif>
+                            {{\app\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}</option> 
+                        @endforeach
+                      </select>
+
                       <label for="title">Title</label>
                       <input type="text" class="form-control" id="title" value="{{$data->title}}" name="title" >
                     </div>
