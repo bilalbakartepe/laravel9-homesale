@@ -137,7 +137,10 @@ class AdminHomeController extends Controller
     public function destroy(Home $home,$id)
     {
         $data=Home::find($id);
-        Storage::delete($data->image);
+        if (Storage::exists($data->image)){
+            Storage::delete($data->image);
+        }
+        
         $data->delete();
         return redirect("/admin/house");
     }

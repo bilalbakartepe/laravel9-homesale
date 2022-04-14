@@ -66,6 +66,19 @@
                     <tr><td>Description     </td><td>{{$data->description}}</td></tr>
                     <tr><td>Image           </td><td>{{$data->image}}</td></tr>
                     <tr><td>Status          </td><td>{{$data->status}}</td></tr>
+                    <tr><td>Category        </td><td>{{\app\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}</td></tr>
+                    <tr><td>Detail          </td><td>{{$data->detail}}</td></tr>
+                    <tr><td>Location        </td><td>{{$data->location}}</td></tr>
+                    <tr><td>Heating         </td><td>{{$data->heating}}</td></tr>
+                    <tr><td>Room Number     </td><td>{{$data->room_number}}</td></tr>
+                    <tr><td>Price           </td><td>{{$data->price}}</td></tr>
+                    <tr><td>Size            </td><td>{{$data->size}}</td></tr>
+                    <tr><td>Bath Number     </td><td>{{$data->bath_number}}</td></tr>
+                    <tr><td>Balcony Number  </td><td>{{$data->balcony_number}}</td></tr>
+                    <tr><td>Floor           </td><td>{{$data->floor}}</td></tr>
+                    <tr><td>Building Age    </td><td>{{$data->buildin_age}}</td></tr>
+                    <tr><td>Dues            </td><td>{{$data->dues}}</td></tr>
+                    <tr><td>User ID         </td><td>{{$data->status}}</td></tr>
                     <tr><td>Created Date    </td><td>{{$data->expire_at}}</td></tr>
                     <tr><td>Updated Date    </td><td>{{$data->update_at}}</td></tr>
                   </tbody>
