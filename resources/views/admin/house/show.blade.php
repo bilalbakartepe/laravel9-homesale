@@ -1,6 +1,6 @@
 @extends('layouts.adminbase')
 
-@section('tittle', "Show Category: ".$data->title)
+@section('tittle', "Show House: ".$data->title)
 
 
 @section('content')
@@ -9,7 +9,7 @@
           <div>
             <div class="row">
               <div class="col-sm-2">
-                <a href="/admin/category/edit/{{$data->id}}" class="btn btn-block btn-primary btn-lg">
+                <a href="/admin/house/edit/{{$data->id}}" class="btn btn-block btn-primary btn-lg">
                   Edit
                 </a>
               </div>
@@ -19,7 +19,7 @@
 
 
               <div class="col-sm-2">
-                <a href="/admin/category/delete/{{$data->id}}" class="btn btn-block btn-danger btn-lg">
+                <a href="/admin/house/delete/{{$data->id}}" class="btn btn-block btn-danger btn-lg">
                   Delete
                 </a>
               </div>
@@ -31,11 +31,11 @@
           <!-- Content Header (Page header) -->
           <section class="content-header">
             <h1>
-              Show Category:  {{$data->title}}
+              Show House:  {{$data->title}}
             </h1>
               <ol class="breadcrumb float-sm-right">
                 <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a>Show Category</a></li>
+                <li><a>Show House</a></li>
               </ol>
             
           </section>
@@ -56,30 +56,22 @@
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">
-                    <tbody><tr>
-                      <th>ID</th>
-                      <th>Title</th>
-                      <th>Keywords</th>
-                      <th>Description</th>
-                      <th>Image</th>
-                      <th>Status</th>
-                      <th>Created Date</th>
-                      <th>Updated Date</th>
-                    </tr>
+                  <tbody>
                     <tr>
-                      <td>{{$data->id}}</td>
-                      <td>{{$data->title}}</td>
-                      <td>{{$data->keywords}}</td>
-                      <td>{{$data->description}}</td>
-                      <td>{{$data->image}}</td>
-                      <td>{{$data->status}}</td>
-                      <td>{{$data->expire_at}}</td>
-                      <td>{{$data->update_at}}</td>
+                      <th>Details The House</th>
                     </tr>
-                  
-                  </tbody></table>
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-            </div>
+                    <tr><td>ID              </td><td>{{$data->id}}</td></tr>
+                    <tr><td>Title           </td><td>{{$data->title}}</td></tr>
+                    <tr><td>Keywords        </td><td>{{$data->keywords}}</td></tr>
+                    <tr><td>Description     </td><td>{{$data->description}}</td></tr>
+                    <tr><td>Image           </td><td>{{$data->image}}</td></tr>
+                    <tr><td>Status          </td><td>{{$data->status}}</td></tr>
+                    <tr><td>Created Date    </td><td>{{$data->expire_at}}</td></tr>
+                    <tr><td>Updated Date    </td><td>{{$data->update_at}}</td></tr>
+                  </tbody>
+                </table>
+              </div><!-- /.box-body -->
+            </div><!-- /.box -->
           </div>
+        </div>
 @endsection

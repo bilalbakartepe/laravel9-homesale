@@ -44,7 +44,7 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Responsive Hover Table</h3>
+                  <h3 class="box-title">Show The Category</h3>
                   <div class="box-tools">
                     <div class="input-group">
                       <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search">
@@ -56,26 +56,18 @@
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">
-                    <tbody><tr>
-                      <th>ID</th>
-                      <th>Title</th>
-                      <th>Keywords</th>
-                      <th>Description</th>
-                      <th>Image</th>
-                      <th>Status</th>
-                      <th>Created Date</th>
-                      <th>Updated Date</th>
-                    </tr>
+                    <tbody>
                     <tr>
-                      <td>{{$data->id}}</td>
-                      <td>{{$data->title}}</td>
-                      <td>{{$data->keywords}}</td>
-                      <td>{{$data->description}}</td>
-                      <td>{{$data->image}}</td>
-                      <td>{{$data->status}}</td>
-                      <td>{{$data->expire_at}}</td>
-                      <td>{{$data->update_at}}</td>
+                      <th>Details The House</th>
                     </tr>
+                    <tr><td>ID              </td><td>{{$data->id}}</td></tr>
+                    <tr><td>Title           </td><td>{{$data->title}}</td></tr>
+                    <tr><td>Keywords        </td><td>{{$data->keywords}}</td></tr>
+                    <tr><td>Description     </td><td>{{$data->description}}</td></tr>
+                    <tr><td>Image           </td><td>{{$data->image}}</td></tr>
+                    <tr><td>Status          </td><td>{{$data->status}}</td></tr>
+                    <tr><td>Created Date    </td><td>{{$data->expire_at}}</td></tr>
+                    <tr><td>Updated Date    </td><td>{{$data->update_at}}</td></tr>
                   
                   </tbody></table>
                 </div><!-- /.box-body -->
