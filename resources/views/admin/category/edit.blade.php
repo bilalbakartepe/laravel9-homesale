@@ -14,7 +14,7 @@
                 <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li><a>Add Category</a></li>
               </ol>
-            
+
           </section>
           <br>
           <div class="box box-primary">
@@ -33,7 +33,7 @@
                         <option value="0" selected="selected">Main Category</option>
                         @foreach($datalist as $rs)
                           <option value="{{$rs->id}}" @if($rs->id==$data->parentid) selected="selected" @endif>
-                            {{\app\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}</option> 
+                            {{\app\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}</option>
                         @endforeach
                       </select>
 
@@ -49,11 +49,11 @@
                       <input type="text" class="form-control" id="description" value="{{$data->description}}" name="description">
                     </div>
 
-                    
+
                     <div class="form-group">
                       <label>Image</label>
                       <input type="file" name="image">
-                      
+
                     </div>
 
 

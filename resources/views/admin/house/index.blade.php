@@ -32,8 +32,8 @@
           </div>
         <br>
 
-          
-        
+
+
         <!-- Default box -->
           <div class="box">
                 <div class="box-header">
@@ -60,9 +60,9 @@
                       <td>@if($rs->image)
                             <img src="{{Storage::url($rs->image)}}" style="height: 40px">
                           @endif
-                      
+
                       </td>
-                      
+
                       <td>{{$rs->size}}</td>
                       <td>{{$rs->price}}</td>
                       <td>{{$rs->location}}</td>
@@ -70,16 +70,16 @@
                       <td>
                         <a href="/admin/house/index/{{$rs->id}}"
                         onclick="return !window.open(this.href,'','top=50 left=100 width=1100,height=700')">
-                        <img src="{{asset('assets'}}/admin/img/gallery.png" style="height: 40px">
+
                         </a>
                       </td>
-                      <td>                    
+                      <td>
                         <a href="/admin/house/edit/{{$rs->id}}" >
                         <i class="fa fa-fw fa-edit"></i> Edit</a></td>
                       <td>
                       <a href="/admin/house/destroy/{{$rs->id}}" onclick="return confirm('Are you sure for deleting ?')">
                         <i class="fa fa-fw fa-ban"></i>Delete</a>
-                        
+
                       <td>
                       <a href="/admin/house/show/{{$rs->id}}">
                         <i class="fa fa-fw fa-bars"></i> Show</a></td>

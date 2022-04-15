@@ -14,7 +14,7 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
      protected $appends=[
             'getParentsTree'
      ];
@@ -29,7 +29,7 @@ class CategoryController extends Controller
         $title=$parent->title. ' > '.$title;
         return CategoryController::getParentsTree($parent,$title);
      }
- 
+
      public function index()
     {
         $data=Category::all();
@@ -91,7 +91,7 @@ class CategoryController extends Controller
     {
         $data=Category::find($id);
         $datalist=Category::all();
-        return view("admin.category.edit",['data' => $data ,'datalistll'=>$datalist]);
+        return view("admin.category.edit",['data' => $data ,'datalist'=>$datalist]);
     }
 
     /**
