@@ -14,8 +14,8 @@ class AdminHomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
-    
+
+
      public function index()
     {
         $data=Home::all();
@@ -91,7 +91,9 @@ class AdminHomeController extends Controller
     {
         $data=Home::find($id);
         $datalist=Category::all();
-        return view("admin.house.edit",['data' => $data ,'datalist'=>$datalist]);
+        $dataCategory=Category::find($data->categoryid);
+
+        return view("admin.house.edit",['data' => $data ,'datalist'=>$datalist , 'dataCategory'=>$dataCategory]);
     }
 
     /**
@@ -103,6 +105,7 @@ class AdminHomeController extends Controller
      */
     public function update(Request $request, Home $home,$id)
     {
+        $data=Home::find($id);
         $data->categoryid=$request->categoryid;
         $data->userid=0;//$request->parent_id;
         $data->title = $request->title;
@@ -140,7 +143,7 @@ class AdminHomeController extends Controller
         if (Storage::exists($data->image)){
             Storage::delete($data->image);
         }
-        
+
         $data->delete();
         return redirect("/admin/house");
     }
