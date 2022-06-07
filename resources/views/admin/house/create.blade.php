@@ -27,8 +27,8 @@
                   @csrf
                   <div class="box-body">
                     <div class="form-group">
-                      <label >Parent Category</label>
-                      <select name="parent_id" class="form-control">
+                      <label >Category</label>
+                      <select name="category_id" class="form-control">
 
                         @foreach($data as $rs)
                           <option value="{{$rs->id}}">{{App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}</option>

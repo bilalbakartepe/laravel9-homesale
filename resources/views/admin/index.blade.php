@@ -1,6 +1,6 @@
 @extends('layouts.adminbase')
 
-@section('tittle', "Agent Admin Panel")
+@section('tittle', "Agent Admin Panel House")
 
 
 @section('content')

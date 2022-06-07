@@ -27,7 +27,7 @@
             </div>
           </div>
           <br>
-      
+
           <!-- Content Header (Page header) -->
           <section class="content-header">
             <h1>
@@ -37,7 +37,7 @@
                 <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li><a>Show House</a></li>
               </ol>
-            
+
           </section>
           <br>
           <div class="row">
@@ -66,7 +66,7 @@
                     <tr><td>Description     </td><td>{{$data->description}}</td></tr>
                     <tr><td>Image           </td><td>{{$data->image}}</td></tr>
                     <tr><td>Status          </td><td>{{$data->status}}</td></tr>
-                    <tr><td>Category        </td><td>{{\app\Http\Controllers\AdminPanel\CategoryController::getParentsTree($data->category,$data->category->title)}}</td></tr>
+                    <tr><td>Category        </td><td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($data->category,$data->category->title)}}</td></tr>
                     <tr><td>Detail          </td><td>{{$data->detail}}</td></tr>
                     <tr><td>Location        </td><td>{{$data->location}}</td></tr>
                     <tr><td>Heating         </td><td>{{$data->heating}}</td></tr>

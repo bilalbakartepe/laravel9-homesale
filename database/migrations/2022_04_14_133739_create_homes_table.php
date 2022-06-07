@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('homes', function (Blueprint $table) {
             $table->id();
-            $table->string('tittle');
+            $table->string('title');
             $table->string('keywords')->nullable();
             $table->string('description', 2048)->nullable();
             $table->string('image')->nullable();
@@ -32,7 +32,7 @@ return new class extends Migration
             $table->integer('building_age')->nullable();
             $table->float('dues')->nullable();
             $table->foreignId('userid')->nullable();
-            $table->string('status',6)->default('Active');
+            $table->string('status',50)->default('Active');
             $table->timestamp('expire_at');
         });
     }

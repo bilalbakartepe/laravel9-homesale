@@ -28,6 +28,6 @@
 
     @yield('content')
 
-    @include("admin.footer")
+    
     @yield('foot')
   </body>

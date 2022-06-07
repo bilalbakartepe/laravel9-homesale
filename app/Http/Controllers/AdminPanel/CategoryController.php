@@ -30,6 +30,19 @@ class CategoryController extends Controller
         return CategoryController::getParentsTree($parent,$title);
      }
 
+     public static function getParentsTreeSecond($id)
+     {
+         $category=Category::find($id);
+         $title=$category->title;
+         if($category->parentid==0)
+         {
+             return $title;
+         }
+        $parent=Category::find($category->parentid);
+        $title=$parent->title. ' > '.$title;
+        return CategoryController::getParentsTree($parent,$title);
+     }
+
      public function index()
     {
         $data=Category::all();

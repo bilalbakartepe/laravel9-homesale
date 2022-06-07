@@ -4,7 +4,8 @@ namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Image;
+use App\Models\Home;
 class ImageController extends Controller
 {
     /**
@@ -14,9 +15,9 @@ class ImageController extends Controller
      */
     public function index($pid)
     {
-       
-        $data=Image::where('homeid',$pid);
-        return view("admin.image.index",['data'=>$data]);
+        $house=Home::find($pid);
+        $images=Image::where('homeid',$pid);
+        return view("admin.image.index",['images'=>$images,'house'=>$house]);
     }
 
     /**

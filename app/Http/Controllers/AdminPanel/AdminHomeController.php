@@ -42,7 +42,7 @@ class AdminHomeController extends Controller
     public function store(Request $request)
     {
         $data=new Home();
-        $data->categoryid=$request->categoryid;
+        $data->categoryid=$request->category_id;
         $data->userid=0;//$request->parent_id;
         $data->title = $request->title;
         $data->keywords = $request->keywords;
