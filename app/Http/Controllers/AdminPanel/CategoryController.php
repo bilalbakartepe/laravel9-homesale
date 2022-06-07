@@ -62,7 +62,7 @@ class CategoryController extends Controller
         $data->description = $request->description;
         $data->status = $request->status;
         if($request->file('image')){
-            $data->file=$request->file('image')->store('images');
+            $data->image=$request->file('image')->store('images');
         }
         $data->save();
 

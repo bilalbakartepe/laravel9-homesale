@@ -29,8 +29,16 @@
               <a href="#">
                 <i class="fa fa-fw fa-home"></i> <span>Home</span>
               </a>
-
             </li>
+
+            <li>
+              <a href="/admin/category">
+                <i class="fa fa-fw fa-list-alt"></i>
+                <span>Categories</span>
+              </a>
+ 
+            </li>
+
             <li>
               <a href="#">
                 <i class="fa fa-envelope"></i>

@@ -1,9 +1,4 @@
-@extends('layouts.adminbase')
 
-@section('tittle', "Agent Admin Panel House Image Gallery")
-
-
-@section('content')
 <div class="content-wrapper">
         <!-- Content Header (Page header) -->
 
@@ -43,14 +38,19 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th style="width: 10px">ID</th>
+                        
+                        <th>Title</th>
+                        <th>Image</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                      </tr>
+
+                    </thead>
                     <tbody>
-                    <tr>
-                      <th style="width: 10px">ID</th>
-                      
-                      <th>Title</th>
-                      <th>Image</th>
-                      <th>Status</th>
-                    </tr>
+                    
                   @foreach($data as $rs)
                     <tr>
                       <td>{{$rs->id}}</td>
@@ -61,12 +61,6 @@
                           @endif
                       
                       </td>
-                      
-                      <td>{{$rs->size}}</td>
-                      <td>{{$rs->price}}</td>
-                      <td>{{$rs->location}}</td>
-                      <td>{{$rs->status}}</td>
-                      <td><img src="{{asset('assets'}}/admin/img/gallery.png" style="height: 40px"></td>
                       <td>                    
                         <a href="/admin/house/edit/{{$rs->id}}" >
                         <i class="fa fa-fw fa-edit"></i> Edit</a></td>
@@ -80,4 +74,3 @@
               </div>
 
         </section><!-- /.content -->
-@endsection

@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
 use App\Http\Controllers\AdminPanel\CategoryController;
 use App\Http\Controllers\AdminPanel\AdminHomeController as AdminHouseController;
-use App\Http\Controllers\AdminPanel\ImageController;
+use App\Http\Controllers\AdminPanel\ImageController as AdminImageController;
 
 
 /*
@@ -63,7 +63,7 @@ Route::prefix('admin')->name('admin')->group(function(){
 
     /*              Images                  */
 
-    Route::prefix('image')->name('image')->controller(ImageController::class)->group(function(){
+    Route::prefix('image')->name('image')->controller(AdminImageController::class)->group(function(){
         Route::get('/{pid}','index')->name('index');
         Route::get('/create/{pid}','create')->name('create');
         Route::post('/store/{pid}','store')->name('store');

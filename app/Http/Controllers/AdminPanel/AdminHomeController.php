@@ -61,7 +61,7 @@ class AdminHomeController extends Controller
         $data->status = $request->status;
 
         if($request->file('image')){
-            $data->file=$request->file('image')->store('images');
+            $data->image=$request->file('image')->store('images');
         }
 
         $data->save();

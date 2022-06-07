@@ -14,7 +14,8 @@ class ImageController extends Controller
      */
     public function index($pid)
     {
-        $data=Image::where('product_id',$pid);
+       
+        $data=Image::where('homeid',$pid);
         return view("admin.image.index",['data'=>$data]);
     }
 

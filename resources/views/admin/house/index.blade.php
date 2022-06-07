@@ -47,6 +47,7 @@
                       <th>Category</th>
                       <th>Title</th>
                       <th>Image</th>
+                      <th>Image Gallery</th>
                       <th>Size</th>
                       <th>Price</th>
                       <th>Location</th>
@@ -62,16 +63,20 @@
                           @endif
 
                       </td>
-
+                      <td>
+                          <a href="/admin/image/{{$rs->id}}"
+                            onclick="return !window.open(this.href,'','top=50 left=100 width=1100,height=700')">
+                            <img src="{{asset('assets')}}/Admin/img/imgGallery.png" > 
+                          </a>
+                          
+                          
+                      </td>
                       <td>{{$rs->size}}</td>
                       <td>{{$rs->price}}</td>
                       <td>{{$rs->location}}</td>
                       <td>{{$rs->status}}</td>
                       <td>
-                        <a href="/admin/house/index/{{$rs->id}}"
-                        onclick="return !window.open(this.href,'','top=50 left=100 width=1100,height=700')">
-
-                        </a>
+                        
                       </td>
                       <td>
                         <a href="/admin/house/edit/{{$rs->id}}" >

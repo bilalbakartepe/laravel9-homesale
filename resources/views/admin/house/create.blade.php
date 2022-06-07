@@ -171,7 +171,6 @@
                     <div class="form-group">
                       <label>Image</label>
                       <input type="file" name="image">
-
                     </div>
 
 
