@@ -59,7 +59,6 @@ class AdminHomeController extends Controller
         $data->building_age = $request->building_age;
         $data->dues = $request->dues;
         $data->status = $request->status;
-
         if($request->file('image')){
             $data->image=$request->file('image')->store('images');
         }

@@ -18,14 +18,10 @@
             </div>
             
             <div class="form-group">
-              <label>Image</label>
-              <input type="file" name="image">
-              
+            <label>Image</label>
+              <input type="file" name="imagepath"></input>
+              <button type="submit" class="btn btn-primary">Upload</button>
             </div>
-
-
-          <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Save</button>
           </div>
       </form>
 
@@ -55,18 +51,15 @@
               <td>{{$rs->id}}</td>
               <td>{{$rs->title}}</td>
 
-              <td>@if($rs->image)
-                    <img src="{{Storage::url($rs->image)}}" style="height: 40px">
+              <td>@if($rs->imagepath)
+                    <img src="{{Storage::url($rs->imagepath)}}" style="height: 85px">
                   @endif
               
               </td>
-              <td>                    
-                <a href="/admin/house/edit/{{$rs->id}}" >
-                <i class="fa fa-fw fa-edit"></i> Edit</a></td>
               <td>
-              <a href="/admin/house/destroy/{{$rs->id}}" onclick="return confirm('Are you sure for deleting ?')">
+              <a href="/admin/image/destroy/{{$house->id}}/{{$rs->id}}" onclick="return confirm('Are you sure for deleting ?')">
                 <i class="fa fa-fw fa-ban"></i>Delete</a>
-              
+                
           @endforeach
           </tbody></table>
         </div><!-- /.box-body -->

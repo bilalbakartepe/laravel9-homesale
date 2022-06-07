@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Image;
 use App\Models\Home;
+
+use Illuminate\Support\Facades\DB;
+
 class ImageController extends Controller
 {
     /**
@@ -16,29 +19,27 @@ class ImageController extends Controller
     public function index($pid)
     {
         $house=Home::find($pid);
-        $images=Image::where('homeid',$pid);
+        $images=DB::table('images')->where('homeid',$pid)->get();
         return view("admin.image.index",['images'=>$images,'house'=>$house]);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create($pid)
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request,$pid)
     {
-        //
+        $data=new Image();
+        $data->homeid=$pid;
+        $data->title = $request->title;
+
+        if($request->file('imagepath')){
+            $data->imagepath=$request->file('imagepath')->store('images');
+        }
+        $data->save();
+
+        return redirect("/admin/image/$pid");
     }
 
     /**
@@ -83,6 +84,12 @@ class ImageController extends Controller
      */
     public function destroy($pid,$id)
     {
-        //
+        $data=Image::find($id);
+        if($data->image && Storage::disk('public')->exists($data->image)){
+            Storage::delete($data->image);
+        }
+        
+        $data->delete();
+        return redirect("/admin/image/$pid");
     }
 }
