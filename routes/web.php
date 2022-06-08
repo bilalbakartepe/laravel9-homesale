@@ -19,18 +19,30 @@ use App\Http\Controllers\AdminPanel\ImageController as AdminImageController;
 |
 */
 
-Route::get('/', function () {
-    return view('home.index');
+// Route::get('/', function () {
+//     return view('home.index');
+// });
+// Route::get('/home',function(){
+//     return view('home.index');
+// });
+
+Route::prefix('/')->name('home')->controller(HomeController::class)->group(function(){
+    Route::get('/','index')->name('index');
+    Route::get('/home','index')->name('index');
+
 });
-Route::get('/home',function(){
-    return view('home.index');
-});
+
+
+
+
 Route::get('/about',function(){
     return view('about');
 });
 Route::get('/contact',function(){
     return view('contact');
 });
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

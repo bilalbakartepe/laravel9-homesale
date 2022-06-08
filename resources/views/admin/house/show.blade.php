@@ -3,6 +3,10 @@
 @section('tittle', "Show House: ".$data->title)
 
 
+@section('head')
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
+@ensection
+
 @section('content')
 <div class="content-wrapper">
   <br>
@@ -64,10 +68,16 @@
                     <tr><td>Title           </td><td>{{$data->title}}</td></tr>
                     <tr><td>Keywords        </td><td>{{$data->keywords}}</td></tr>
                     <tr><td>Description     </td><td>{{$data->description}}</td></tr>
-                    <tr><td>Image           </td><td>{{$data->image}}</td></tr>
+                    <tr>
+                      <td>@if($data->image)
+                            <img src="{{Storage::url($data->image)}}" style="height: 120px">
+                          @endif
+
+                      </td>
+                    </tr>
                     <tr><td>Status          </td><td>{{$data->status}}</td></tr>
-                    <tr><td>Category        </td><td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($data->category,$data->category->title)}}</td></tr>
-                    <tr><td>Detail          </td><td>{{$data->detail}}</td></tr>
+                    <tr><td>Category        </td><td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTreeSecond($data->categoryid)}}</td></tr>
+                    <tr><td>Detail          </td><td>{{!! $data->detail !!}}</td></tr>
                     <tr><td>Location        </td><td>{{$data->location}}</td></tr>
                     <tr><td>Heating         </td><td>{{$data->heating}}</td></tr>
                     <tr><td>Room Number     </td><td>{{$data->room_number}}</td></tr>

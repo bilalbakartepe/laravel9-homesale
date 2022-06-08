@@ -2,6 +2,10 @@
 
 @section('tittle', "Agent Admin Panel House Create")
 
+@section('head')
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
+@ensection
+
 
 @section('content')
 <div class="content-wrapper">
@@ -48,7 +52,19 @@
 
                     <div class="form-group">
                       <label for="detail">Detail</label>
-                      <input type="text" class="form-control" id="detail" name="detail">
+                      <textarea class="form-control" id="detail" name="detail">
+
+                      </textarea>
+                      <script>
+                        ClassicEditor
+                                .create( document.querySelector( '#detail' ) )
+                                .then( editor => {
+                                        console.log( editor );
+                                } )
+                                .catch( error => {
+                                        console.error( error );
+                                } );
+                      </script>
                     </div>
 
 

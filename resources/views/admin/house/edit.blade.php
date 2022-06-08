@@ -3,6 +3,11 @@
 @section('tittle', "Edit House: ".$data->title)
 
 
+@section('head')
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
+@ensection
+
+
 @section('content')
 <div class="content-wrapper">
           <!-- Content Header (Page header) -->
@@ -51,8 +56,19 @@
 
                     <div class="form-group">
                       <label for="detail">Detail</label>
-                      <input type="text" class="form-control" id="detail" name="detail" value="{{$data->detail}}">
-                    </div>
+                      <textarea class="form-control" id="detail" name="detail">
+
+                      </textarea>
+                      <script>
+                        ClassicEditor
+                                .create( document.querySelector( '#detail' ) )
+                                .then( editor => {
+                                        console.log( editor );
+                                } )
+                                .catch( error => {
+                                        console.error( error );
+                                } );
+                      </script>
 
 
                     <div class="form-group">

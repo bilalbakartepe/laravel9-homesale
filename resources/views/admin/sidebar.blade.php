@@ -26,11 +26,11 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li class="treeview">
-              <a href="#">
-                <i class="fa fa-fw fa-home"></i> <span>Home</span>
+              <a href="/admin">
+                <i class="fa fa-fw fa-circle-o"></i> <span>Home</span>
               </a>
             </li>
-
+            
             <li>
               <a href="/admin/category">
                 <i class="fa fa-fw fa-list-alt"></i>
@@ -38,6 +38,16 @@
               </a>
  
             </li>
+
+            <li>
+              <a href="/admin/house">
+                <i class="fa fa-fw fa-home"></i>
+                <span>Houses</span>
+              </a>
+ 
+            </li>
+
+
 
             <li>
               <a href="#">
