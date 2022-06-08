@@ -77,7 +77,7 @@
                     </tr>
                     <tr><td>Status          </td><td>{{$data->status}}</td></tr>
                     <tr><td>Category        </td><td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTreeSecond($data->categoryid)}}</td></tr>
-                    <tr><td>Detail          </td><td>{{!! $data->detail !!}}</td></tr>
+                    <tr><td>Detail          </td><td>{!! $data->detail !!}</td></tr>
                     <tr><td>Location        </td><td>{{$data->location}}</td></tr>
                     <tr><td>Heating         </td><td>{{$data->heating}}</td></tr>
                     <tr><td>Room Number     </td><td>{{$data->room_number}}</td></tr>

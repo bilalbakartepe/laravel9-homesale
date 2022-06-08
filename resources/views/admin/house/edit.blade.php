@@ -89,7 +89,7 @@
 
                     <div class="form-group">
                       <label for="price">Price</label>
-                      <input type="text" class="form-control" id="price" name="price" value="{{$data->price}}">
+                      <input type="text" class="form-control" id="price" name="updated_price" value="{{$data->price}}">
                     </div>
                     <div class="form-group">
                       <label for="size">Size</label>

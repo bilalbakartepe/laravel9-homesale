@@ -12,4 +12,14 @@ class Category extends Model
     public function products(){
         return $this->hasMany(Home::class);
     }
+
+    #One To Many Iverse
+    public function parent(){
+        return $this->belongsTo(Category::class,'parentid');
+
+    }
+    #One To Many
+    public function children(){
+        return $this->hasMany(Category::class,'parentid');
+    }
 }

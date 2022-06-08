@@ -114,7 +114,7 @@ class AdminHomeController extends Controller
         $data->location = $request->location;
         $data->heating = $request->heating;
         $data->room_number = $request->room_number;
-        $data->price = $request->price;
+        $data->update_price = $request->updated_price;
         $data->size = $request->size;
         $data->bath_number = $request->bath_number;
         $data->balcony_number = $request->balcony_number;

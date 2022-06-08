@@ -33,8 +33,12 @@ Route::prefix('/')->name('home')->controller(HomeController::class)->group(funct
 });
 
 
+Route::prefix('house')->name('home')->controller(HomeController::class)->group(function(){
+    Route::get('/{houseid}','house')->name('house');
 
+});
 
+Route::get('/categoryhouses/{id}/{slug}', [HomeController::class, 'categoryhouses'])->name('categoryhouses');
 Route::get('/about',function(){
     return view('about');
 });

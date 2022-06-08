@@ -33,6 +33,7 @@ return new class extends Migration
             $table->float('dues')->nullable();
             $table->foreignId('userid')->nullable();
             $table->string('status',50)->default('Active');
+            $table->float('update_price')->nullable();
             $table->timestamp('expire_at');
         });
     }
