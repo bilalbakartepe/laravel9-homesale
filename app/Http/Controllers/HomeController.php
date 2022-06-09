@@ -35,7 +35,7 @@ class HomeController extends Controller
                 'firstslide'=>$firstslide,
                 'categorylist1'=>$categorylist1
             ]);
-        } echo "Helloooo";
+        } 
     }
 
     public function house($houseid){
@@ -68,8 +68,23 @@ class HomeController extends Controller
 
     public function contact(){
         
-        return view('home.contact');
+        $data=Setting::first();
+        
+        if($data!=null){
+            return view("home.contact",['data'=>$data]);
+        }
+
     }
+
+    public function references (){
+        
+        $data=Setting::first();
+        
+        if($data!=null){
+            return view("home.references",['data'=>$data]);
+        }
+    }
+    
     public function about(){
          
         $data=Setting::first();
@@ -77,7 +92,7 @@ class HomeController extends Controller
         if($data!=null){
             return view("home.about",['data'=>$data]);
         }
-        // return view('home.contact');
+        
     }
 
    
