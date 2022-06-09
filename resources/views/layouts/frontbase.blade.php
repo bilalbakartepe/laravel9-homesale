@@ -33,6 +33,9 @@
 	@section('sidebar')
 		@include("home.sidebar")
 	@show
+    @section('sidebaredition')
+		@include("home.sidebaredition")
+	@show
 	@section('slider')
 		@include("home.slider")
 	@show

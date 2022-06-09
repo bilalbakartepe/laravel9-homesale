@@ -1,4 +1,11 @@
-<div class="col-lg-9">
+<div class="col-lg-12">
+
+<style>
+    hr.new1 {
+    border-top: 1px solid white;
+    }
+</style>
+<hr class="new1">
     <div id="header-carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
 

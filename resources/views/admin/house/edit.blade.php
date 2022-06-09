@@ -5,7 +5,7 @@
 
 @section('head')
     <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
-@ensection
+@endsection
 
 
 @section('content')

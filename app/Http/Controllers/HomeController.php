@@ -7,6 +7,8 @@ use App\Models\Home;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 
+use App\Models\Setting;
+
 class HomeController extends Controller
 {
     //
@@ -20,16 +22,20 @@ class HomeController extends Controller
 
 
     public function index(){
-        $sliderdata=Home::limit(4)->get();
-        $houselist1=Home::limit(6)->get();
-        $firstslide=Home::find(5);
-        $categorylist1=Category::all();
-        return view('home.index',[
-            'sliderdata'=>$sliderdata,
-            'houselist1'=>$houselist1,
-            'firstslide'=>$firstslide,
-            'categorylist1'=>$categorylist1
-        ]);
+        if(Home::limit(8)->get()){
+            $sliderdata=Home::limit(4)->get();
+            $houselist1=Home::limit(6)->get();
+            $firstslide=Home::find(1);
+
+            $categorylist1=Category::all();
+
+            return view('home.index',[
+                'sliderdata'=>$sliderdata,
+                'houselist1'=>$houselist1,
+                'firstslide'=>$firstslide,
+                'categorylist1'=>$categorylist1
+            ]);
+        } echo "Helloooo";
     }
 
     public function house($houseid){
@@ -58,6 +64,20 @@ class HomeController extends Controller
             'houses'=>$houses,
             'category'=>$category
         ]);
+    }
+
+    public function contact(){
+        
+        return view('home.contact');
+    }
+    public function about(){
+         
+        $data=Setting::first();
+        
+        if($data!=null){
+            return view("home.about",['data'=>$data]);
+        }
+        // return view('home.contact');
     }
 
    

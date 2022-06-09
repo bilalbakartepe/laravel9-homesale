@@ -26,10 +26,13 @@ use App\Http\Controllers\AdminPanel\ImageController as AdminImageController;
 //     return view('home.index');
 // });
 
+
 Route::prefix('/')->name('home')->controller(HomeController::class)->group(function(){
     Route::get('/','index')->name('index');
     Route::get('/home','index')->name('index');
-
+    Route::get('/contact','contact')->name('contact');
+    Route::get('/about','about')->name('about');
+    Route::get('/references','references')->name('references');
 });
 
 
@@ -39,13 +42,6 @@ Route::prefix('house')->name('home')->controller(HomeController::class)->group(f
 });
 
 Route::get('/categoryhouses/{id}/{slug}', [HomeController::class, 'categoryhouses'])->name('categoryhouses');
-
-Route::get('/about',function(){
-    return view('about');
-});
-Route::get('/contact',function(){
-    return view('contact');
-});
 
 
 
@@ -57,6 +53,7 @@ Route::prefix('admin')->name('admin')->group(function(){
     Route::get('/',[AdminHomeController::class,'index'])->name('index');
 
     Route::get('/setting',[AdminHomeController::class,'setting'])->name('setting');
+    Route::post('/setting/update',[AdminHomeController::class,'update'])->name('setting.update');
 
 
     /////////////////////////Category admin/////////////

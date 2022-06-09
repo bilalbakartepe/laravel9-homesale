@@ -28,6 +28,11 @@
 
 <body>
 
+    @include("home.header")
+
+    @section('sidebar')
+        @include("home.sidebarwithoutslider")
+    @show
 
     @yield('content')
 

@@ -1,6 +1,6 @@
 @extends('layouts.frontbase')
 
-@section('tittle', "EState Agent")
+@section('title', "EState Agent")
 
 @section('slider')
     @include('home.slider')
