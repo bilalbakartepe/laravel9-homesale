@@ -77,7 +77,7 @@
             </li>
             <li class="header"><span>Settings</span></li>
             <li>
-              <a href="#">
+              <a href="/admin/setting">
                 <i class="fa fa-gear"></i>
                 <span>Settings</span>
                 

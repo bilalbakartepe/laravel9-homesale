@@ -52,22 +52,13 @@ class HomeController extends Controller
 
     public function categoryhouses($id,$title){
 
-
-        echo "ID is..: ".$id." Title is..: ".$title;
-
-        // $house=Home::find($houseid);
-        // $images=DB::table('images')->where('homeid',$houseid)->get();
-        // $houselist1=Home::limit(6)->get();
-        // $firstimage=$images[0];
-
-        // for($i=1; $i<sizeof($images);$i++){
-        //     $images[$i-1]=$images[$i];
-        // }
-
-        // return view('home.house',[
-        //     'house'=>$house,
-        //     'images'=>$images,
-        //     'houselist1'=>$houselist1
-        // ]);
+        $category= Category::find($id);
+        $houses=DB::table('homes')->where('categoryid',$id)->get();
+        return view('home.categoryhomes',[
+            'houses'=>$houses,
+            'category'=>$category
+        ]);
     }
+
+   
 }

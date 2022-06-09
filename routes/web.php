@@ -39,6 +39,7 @@ Route::prefix('house')->name('home')->controller(HomeController::class)->group(f
 });
 
 Route::get('/categoryhouses/{id}/{slug}', [HomeController::class, 'categoryhouses'])->name('categoryhouses');
+
 Route::get('/about',function(){
     return view('about');
 });
@@ -54,6 +55,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 ///////////////////////////////Admin Page////////////////////////////////
 Route::prefix('admin')->name('admin')->group(function(){
     Route::get('/',[AdminHomeController::class,'index'])->name('index');
+
+    Route::get('/setting',[AdminHomeController::class,'setting'])->name('setting');
+
 
     /////////////////////////Category admin/////////////
     Route::prefix('category')->name('category')->controller(CategoryController::class)->group(function(){
