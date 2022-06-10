@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Setting;
+use App\Models\Message;
 
 class HomeController extends Controller
 {
@@ -73,6 +74,24 @@ class HomeController extends Controller
         if($data!=null){
             return view("home.contact",['data'=>$data]);
         }
+
+    }
+
+    public function storemessage(Request $request){
+        
+        
+        $data=new Message();
+        
+        $data->name=$request->name;
+        $data->email=$request->email;
+        $data->phone=$request->phone;
+        $data->subject=$request->subject;
+        $data->message=$request->message;
+        $data->ip=request()->ip();
+        
+        $data->save();
+
+        return redirect()->route('home.contact')->with('info','Your message has been send');
 
     }
 

@@ -6,6 +6,8 @@ use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
 use App\Http\Controllers\AdminPanel\CategoryController;
 use App\Http\Controllers\AdminPanel\AdminHomeController as AdminHouseController;
 use App\Http\Controllers\AdminPanel\ImageController as AdminImageController;
+use App\Http\Controllers\AdminPanel\MessageController;
+use App\Http\Controllers\AdminPanel\FaqController;
 
 
 /*
@@ -19,25 +21,18 @@ use App\Http\Controllers\AdminPanel\ImageController as AdminImageController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('home.index');
-// });
-// Route::get('/home',function(){
-//     return view('home.index');
-// });
-
-
-Route::prefix('/')->name('home')->controller(HomeController::class)->group(function(){
-    Route::get('/','index')->name('index');
-    Route::get('/home','index')->name('index');
-    Route::get('/contact','contact')->name('contact');
-    Route::get('/about','about')->name('about');
-    Route::get('/references','references')->name('references');
+Route::prefix('/')->name('.home')->controller(HomeController::class)->group(function(){
+    Route::get('/','index')->name('.index');
+    Route::get('/home','index')->name('.index');
+    Route::get('/contact','contact')->name('.contact');
+    Route::get('/about','about')->name('.about');
+    Route::get('/references','references')->name('.references');
+    Route::post('/storemessage','storemessage')->name('.storemessage');
 });
 
 
-Route::prefix('house')->name('home')->controller(HomeController::class)->group(function(){
-    Route::get('/{houseid}','house')->name('house');
+Route::prefix('house')->name('.home')->controller(HomeController::class)->group(function(){
+    Route::get('/{houseid}','house')->name('.house');
 
 });
 
@@ -49,44 +44,66 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 ///////////////////////////////Admin Page////////////////////////////////
-Route::prefix('admin')->name('admin')->group(function(){
-    Route::get('/',[AdminHomeController::class,'index'])->name('index');
+Route::prefix('admin')->name('admin.')->group(function(){
+    Route::get('/',[AdminHomeController::class,'index'])->name('.index');
 
-    Route::get('/setting',[AdminHomeController::class,'setting'])->name('setting');
-    Route::post('/setting/update',[AdminHomeController::class,'update'])->name('setting.update');
+    Route::get('/setting',[AdminHomeController::class,'setting'])->name('.setting');
+    Route::post('/setting/update',[AdminHomeController::class,'update'])->name('.setting.update');
 
 
     /////////////////////////Category admin/////////////
-    Route::prefix('category')->name('category')->controller(CategoryController::class)->group(function(){
-        Route::get('/','index')->name('index');
-        Route::get('/create','create')->name('create');
-        Route::post('/store','store')->name('store');
-        Route::get('/edit/{id}','edit')->name('edit');
-        Route::post('/update/{id}','update')->name('update');
-        Route::get('/show/{id}','show')->name('show');
-        Route::get('/destroy/{id}','destroy')->name('destroy');
+    Route::prefix('category')->name('.category')->controller(CategoryController::class)->group(function(){
+        Route::get('/','index')->name('.index');
+        Route::get('/create','create')->name('.create');
+        Route::post('/store','store')->name('.store');
+        Route::get('/edit/{id}','edit')->name('.edit');
+        Route::post('/update/{id}','update')->name('.update');
+        Route::get('/show/{id}','show')->name('.show');
+        Route::get('/destroy/{id}','destroy')->name('.destroy');
     });
 
     /*              Home                    */
-    Route::prefix('house')->name('house')->controller(AdminHouseController::class)->group(function(){
-        Route::get('/','index')->name('index');
-        Route::get('/create','create')->name('create');
-        Route::post('/store','store')->name('store');
-        Route::get('/edit/{id}','edit')->name('edit');
-        Route::post('/update/{id}','update')->name('update');
-        Route::get('/show/{id}','show')->name('show');
-        Route::get('/destroy/{id}','destroy')->name('destroy');
+    Route::prefix('house')->name('.house')->controller(AdminHouseController::class)->group(function(){
+        Route::get('/','index')->name('.index');
+        Route::get('/create','create')->name('.create');
+        Route::post('/store','store')->name('.store');
+        Route::get('/edit/{id}','edit')->name('.edit');
+        Route::post('/update/{id}','update')->name('.update');
+        Route::get('/show/{id}','show')->name('.show');
+        Route::get('/destroy/{id}','destroy')->name('.destroy');
     });
 
     /*              Images                  */
 
-    Route::prefix('image')->name('image')->controller(AdminImageController::class)->group(function(){
-        Route::get('/{pid}','index')->name('index');
+    Route::prefix('image')->name('.image')->controller(AdminImageController::class)->group(function(){
+        Route::get('/{pid}','index')->name('.index');
         
-        Route::post('/store/{pid}','store')->name('store');
-        Route::post('/update/{pid}/{id}','update')->name('update');
-        Route::get('/destroy/{pid}/{id}','destroy')->name('destroy');
+        Route::post('/store/{pid}','store')->name('.store');
+        Route::post('/update/{pid}/{id}','update')->name('.update');
+        Route::get('/destroy/{pid}/{id}','destroy')->name('.destroy');
     });
+
+    /*             Messages                */
+
+
+    Route::prefix('message')->name('message.')->controller(MessageController::class)->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/update/{id}','update')->name('update');
+        Route::get('/show/{id}','show')->name('show');
+        Route::get('/destroy/{id}','destroy')->name('destroy');
+    });
+
+    /*              FAQ                    */
+    Route::prefix('faq')->name('.faq')->controller(FaqController::class)->group(function(){
+        Route::get('/','index')->name('.index');
+        Route::get('/create','create')->name('.create');
+        Route::post('/store','store')->name('.store');
+        Route::get('/edit/{id}','edit')->name('.edit');
+        Route::post('/update/{id}','update')->name('.update');
+        Route::get('/show/{id}','show')->name('.show');
+        Route::get('/destroy/{id}','destroy')->name('.destroy');
+    });
+
 
 
 });

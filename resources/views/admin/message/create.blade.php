@@ -1,6 +1,6 @@
 @extends('layouts.adminbase')
 
-@section('title', "Agent Admin Panel House Create")
+@section('tittle', "Agent Admin Panel House Create")
 
 @section('head')
     <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>

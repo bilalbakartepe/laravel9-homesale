@@ -50,7 +50,7 @@
 
 
             <li>
-              <a href="#">
+              <a href="/admin/message">
                 <i class="fa fa-envelope"></i>
                 <span>Messages</span>
               </a>
@@ -70,7 +70,7 @@
               
             </li>            
             <li>
-              <a href="#">
+              <a href="/admin/faq">
                 <i class="fa fa-fw fa-question"></i> <span>FAQ</span>
               </a>
               
