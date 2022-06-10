@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-    <title>Estate Home - @yield('tittle')</title>
+    <title>Estate Home - @yield('title')</title>
 </head>
 <body>
     @section('sidebar')

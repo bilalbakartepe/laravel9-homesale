@@ -8,7 +8,7 @@ use App\Http\Controllers\AdminPanel\AdminHomeController as AdminHouseController;
 use App\Http\Controllers\AdminPanel\ImageController as AdminImageController;
 use App\Http\Controllers\AdminPanel\MessageController;
 use App\Http\Controllers\AdminPanel\FaqController;
-
+use App\Http\Controllers\AdminPanel\CommentConroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +21,21 @@ use App\Http\Controllers\AdminPanel\FaqController;
 |
 */
 
+Route::middleware('auth')->prefix('user')->group( function () {
+
+    Route::get("/reservations",[UserController::class, 'reservation'])->name('user_reservations');
+    Route::get("/messages",[UserController::class, 'messages'])->name('user_messages');
+
+});
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::view('/loginuser','home.login');
+Route::view('/registeruser','home.register');
+
 Route::prefix('/')->name('.home')->controller(HomeController::class)->group(function(){
     Route::get('/','index')->name('.index');
     Route::get('/home','index')->name('.index');
@@ -28,6 +43,8 @@ Route::prefix('/')->name('.home')->controller(HomeController::class)->group(func
     Route::get('/about','about')->name('.about');
     Route::get('/references','references')->name('.references');
     Route::post('/storemessage','storemessage')->name('.storemessage');
+    Route::post('/storecomment','storecomment')->name('.storecomment');
+    Route::get('/faq','faq')->name('.faq');
 });
 
 
@@ -43,6 +60,8 @@ Route::get('/categoryhouses/{id}/{slug}', [HomeController::class, 'categoryhouse
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
 ///////////////////////////////Admin Page////////////////////////////////
 Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('/',[AdminHomeController::class,'index'])->name('.index');
@@ -105,6 +124,22 @@ Route::prefix('admin')->name('admin.')->group(function(){
     });
 
 
+    /*             Messages                */
+
+
+    Route::prefix('comment')->name('comment.')->controller(CommentConroller::class)->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/update/{id}','update')->name('update');
+        Route::get('/show/{id}','show')->name('show');
+        Route::get('/destroy/{id}','destroy')->name('destroy');
+    });
+
+
 
 });
 
+
+
+Route::get('/admin/login',[\App\Http\Controllers\Admin\HomeController::class,'login'])->name("admin_login");
+Route::post('/admin/login/check',[\App\Http\Controllers\Admin\HomeController::class,'login_check'])->name("admin_login_check");
+Route::get('/logout',[\App\Http\Controllers\Admin\HomeController::class,'logout'])->name("logout");

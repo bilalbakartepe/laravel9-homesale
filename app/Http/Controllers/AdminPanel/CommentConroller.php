@@ -4,8 +4,11 @@ namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Faq;
-class FaqController extends Controller
+use App\Models\Comment;
+use App\Models\User;
+use App\Models\Home;
+
+class CommentConroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +17,21 @@ class FaqController extends Controller
      */
     public function index()
     {
-        $data=Faq::all();
-        return view("admin.faq.index",['data'=>$data]);
+        $data=Comment::all();
+
+        return view('/admin/comment/index',['data'=>$data]);
+    }
+
+    public static function getUserName($id){
+        $data=User::find($id);
+        $data=$data->name;
+        return $data;
+    }
+
+    public static function getHomeTitle($id){
+        $data=Home::find($id);
+        $data=$data->title;
+        return $data;
     }
 
     /**
@@ -25,8 +41,7 @@ class FaqController extends Controller
      */
     public function create()
     {
-        $data=Faq::all();
-        return view("admin.faq.create",['data'=>$data]);
+        //
     }
 
     /**
@@ -37,16 +52,7 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
-        $data=new Faq();
-
-        $data->question=$request->question;
-        $data->answer=$request->answer;
-        $data->status=$request->status;
-        
-        $data->save();
-
-        return redirect("/admin/faq");
-
+        //
     }
 
     /**
@@ -57,9 +63,9 @@ class FaqController extends Controller
      */
     public function show($id)
     {
-        $data=Faq::find($id);
-
-        return view('/admin/faq/show',['data'=>$data]);
+        $data=Comment::find($id);
+        $data->save();
+        return view('/admin/comment/show',['data'=>$data]);
     }
 
     /**
@@ -70,8 +76,7 @@ class FaqController extends Controller
      */
     public function edit($id)
     {
-        $data=Faq::find($id);
-        return view('/admin/faq/edit',['data'=>$data]);
+        //
     }
 
     /**
@@ -83,14 +88,10 @@ class FaqController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data=Faq::find($id);
-
-        $data->question=$request->question;
-        $data->answer=$request->answer;
+        $data=Comment::find($id);
         $data->status=$request->status;
         $data->save();
-
-        return redirect('/admin/faq');
+        return redirect("/admin/comment/show/$id");
     }
 
     /**
@@ -101,9 +102,8 @@ class FaqController extends Controller
      */
     public function destroy($id)
     {
-        $data=Faq::find($id);
-
+        $data=Comment::find($id);
         $data->delete();
-        return redirect("/admin/faq");
+        return redirect('/admin/comment');
     }
 }

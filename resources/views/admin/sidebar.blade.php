@@ -57,7 +57,7 @@
  
             </li>
             <li>
-              <a href="../widgets.html">
+              <a href="/admin/comment">
                 <i class="fa fa-fw fa-comments-o"></i> <span>Comments</span>
               </a> 
             </li>            

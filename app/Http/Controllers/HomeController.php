@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Setting;
 use App\Models\Message;
+use App\Models\Faq;
+use App\Models\Comment;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -45,7 +48,8 @@ class HomeController extends Controller
         $images=DB::table('images')->where('homeid',$houseid)->get();
         $houselist1=Home::limit(6)->get();
         $firstimage=$images[0];
-
+        $comments=DB::table('comments')->where('home_id',$houseid)->where('status','true')->get();
+        
         for($i=1; $i<sizeof($images);$i++){
             $images[$i-1]=$images[$i];
         }
@@ -53,7 +57,8 @@ class HomeController extends Controller
         return view('home.house',[
             'house'=>$house,
             'images'=>$images,
-            'houselist1'=>$houselist1
+            'houselist1'=>$houselist1,
+            'comments'=>$comments
         ]);
     }
 
@@ -61,7 +66,7 @@ class HomeController extends Controller
 
         $category= Category::find($id);
         $houses=DB::table('homes')->where('categoryid',$id)->get();
-        return view('home.categoryhomes',[
+        return view('home.categoryhouses',[
             'houses'=>$houses,
             'category'=>$category
         ]);
@@ -95,6 +100,22 @@ class HomeController extends Controller
 
     }
 
+    public function storecomment(Request $request){
+        
+        $data=new Comment();
+        
+        $data->comment=$request->comment;
+        $data->rate=$request->rate;
+        $data->home_id=$request->house_id;
+        $data->user_id=Auth::id();
+        $data->ip=request()->ip();
+        
+        $data->save();
+
+        return redirect("/house/$request->house_id");
+
+    }
+
     public function references (){
         
         $data=Setting::first();
@@ -112,6 +133,13 @@ class HomeController extends Controller
             return view("home.about",['data'=>$data]);
         }
         
+    }
+
+    public function faq(){
+
+        $datalist=Faq::all();
+        $setting=Setting::first();
+        return view("home.faq",['datalist'=>$datalist,'setting'=>$setting]);
     }
 
    

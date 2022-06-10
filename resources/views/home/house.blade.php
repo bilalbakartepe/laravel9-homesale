@@ -53,6 +53,21 @@
                         Price..:${{$house->update_price}}
                     @endif</h3>
                 <h3 class="text-primary mr-1">Status..:{{$house->status}}</h3>
+                @if(count($comments)>1)
+                    @php 
+                        $avr=0;
+                        foreach($comments as $cm)
+                            $avr=$avr+$cm->rate;
+                        $avr=$avr/count($comments);
+                    @endphp
+
+                     <div class="text-primary mb-2">
+                        {{number_format($avr, 1)}} 
+                        <i class="fas fa-star"></i>
+                    </div>
+                @else
+                
+                @endif
                 <p class="mb-4">{{$house->description}}</p>
                 </div>
                 <div class="d-flex pt-2">
@@ -79,6 +94,7 @@
                 <div class="nav nav-tabs justify-content-center border-secondary mb-4">
                     <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Details</a>
                     <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-2">Futures</a>
+                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Reviews ({{count($comments)}})</a>
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-pane-1">
@@ -134,6 +150,107 @@
                                         Balcony Number..: {{$house->balcony_number}}
                                     </li>
                                   </ul> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tab-pane-3">
+                        <div class="row">
+                            
+                            <div class="col-md-6">
+                                <h4 class="mb-4">{{count($comments)}} review for "{{$house->title}}"</h4>
+                                
+                                <div class="media mb-4">
+                                    @foreach($comments as $comment)
+                                    <img src="" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                    <div class="media-body">
+                                        
+                                        <h6>{{App\Http\Controllers\AdminPanel\CommentConroller::getUserName($comment->user_id)}}<small> - <i>{{$comment->expire_at}}</i></small></h6>
+                                        @if($comment->rate==1)
+                                            <div class="text-primary mb-2">
+                                                <i class="fas fa-star"></i>
+                                            </div>
+
+                                        @elseif($comment->rate==2)
+                                            <div class="text-primary mb-2">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                                                                       
+                                        @elseif($comment->rate==3)
+                                            <div class="text-primary mb-2">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                           
+                                            
+                                        @elseif($comment->rate==4)
+                                            <div class="text-primary mb-2">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            
+                                            
+                                        @elseif($comment->rate==5)
+                                            <div class="text-primary mb-2">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <div class="text-primary mb-2">
+                                                    <i class="fas fa-star"></i>
+                                                </div>
+                                            </div>
+                                            
+                                        @else
+                                            <div class="text-primary">
+
+                                            </div>
+                                        @endif
+                                        <p>{{$comment->comment}}</p>
+                                    </div>
+                                </div>
+                            
+                            @endforeach
+                            <div class="col-md-6">
+                                <h4 class="mb-4">Leave a review</h4>
+                                <small>Your email address will not be published. Required fields are marked *</small>
+                                
+                                <form role="form" action="/storecomment" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="d-flex my-3">
+                                        <p class="mb-0 mr-2">Your Rating * :</p>
+                                        <div class="text-primary">
+                                            
+                                            <input type="radio" id="star5" name="rate" value="5"/>
+                                            <label for="star5">5</label>
+                                            <input type="radio" id="star4" name="rate" value="4"/>
+                                            <label for="star4">4</label>
+                                            <input type="radio" id="star3" name="rate" value="3"/>
+                                            <label for="star3">3</label>
+                                            <input type="radio" id="star2" name="rate" value="2"/>
+                                            <label for="star2">2</label>
+                                            <input type="radio" id="star1" name="rate" value="1"/>
+                                            <label for="star1">1</label>
+                                            
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="house_id" value="{{$house->id}}">
+                                    <div class="form-group">
+                                        <label for="message">Your Review *</label>
+                                        <textarea id="message" name="comment" cols="30" rows="5" class="form-control"></textarea>
+                                    </div>
+                                    @auth
+                                    <div class="form-group mb-0">
+                                        <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
+                                    </div>
+                                    @else
+                                        <a href="/login" class="primary-btn"> For Submit Your Review, Please Login </a>
+                                    @endauth
+
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -36,7 +36,7 @@
 
     @yield('content')
 
-	<@include("home.footer")
+	@include("home.footer")
 	@yield('foot')
 </body>
 </html>

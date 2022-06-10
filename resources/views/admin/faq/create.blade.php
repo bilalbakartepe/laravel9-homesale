@@ -7,7 +7,7 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
 @endsection
 
-
+ 
 @section('content')
 <div class="content-wrapper">
           <!-- Content Header (Page header) -->

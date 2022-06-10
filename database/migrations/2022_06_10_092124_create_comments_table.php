@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('comment');
-            $table->integer('rate');
-            $table->foreignId('parentid');
+            $table->string('comment',400);
+            $table->integer('rate')->default('0');
+            $table->foreignId('home_id');
             $table->foreignId('user_id');
-            $table->string('ip');
-            $table->string('status');
+            $table->string('ip')->nullable();
+            $table->string('status',10)->default('New');
             $table->timestamp('expire_at');
         });
     }

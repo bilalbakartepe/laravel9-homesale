@@ -12,10 +12,16 @@
                 <a href="/references" class="nav-item nav-link">References</a>
                 <a href="/about" class="nav-item nav-link">About Us</a>
                 <a href="/contact" class="nav-item nav-link">Contact</a>
+                <a href="/faq" class="nav-item nav-link">FAQ</a>
             </div>
             <div class="navbar-nav ml-auto py-0">
-                <a href="" class="nav-item nav-link">Login</a>
-                <a href="" class="nav-item nav-link">Register</a>
+                @auth
+                <a class="nav-item nav-link">{{Auth::user()->name}}</a>
+                <a href="/logout" class="nav-item nav-link">Logout</a>
+                @else
+                <a href="/loginuser" class="nav-item nav-link">Login</a>
+                <a href="/registeruser" class="nav-item nav-link">Register</a>
+                @endauth
             </div>
         </div>
     </nav>
