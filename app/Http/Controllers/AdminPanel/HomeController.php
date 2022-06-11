@@ -4,12 +4,20 @@ namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Setting;
+use App\Models\Message;
+use App\Models\Comment;
 class HomeController extends Controller
 {
     public function index(){
-        return view("admin.index");
+
+        $messages=DB::table('messages')->where('status','New')->get();
+        $comments=DB::table('comments')->where('status','New')->get();
+        return view("admin.index",
+        ['messages'=>$messages,
+        'comments'=>$comments]);
     }
 
     public function setting(){

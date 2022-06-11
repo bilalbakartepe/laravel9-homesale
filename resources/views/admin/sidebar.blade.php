@@ -62,7 +62,7 @@
               </a> 
             </li>            
             <li>
-              <a href="#">
+              <a href="/admin/user">
                 <i class="fa fa-fw fa-users"></i>
                 <span>Users</span>
               

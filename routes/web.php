@@ -9,7 +9,7 @@ use App\Http\Controllers\AdminPanel\ImageController as AdminImageController;
 use App\Http\Controllers\AdminPanel\MessageController;
 use App\Http\Controllers\AdminPanel\FaqController;
 use App\Http\Controllers\AdminPanel\CommentConroller;
-
+use App\Http\Controllers\AdminPanel\AdminUserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,12 +21,7 @@ use App\Http\Controllers\AdminPanel\CommentConroller;
 |
 */
 
-Route::middleware('auth')->prefix('user')->group( function () {
 
-    Route::get("/reservations",[UserController::class, 'reservation'])->name('user_reservations');
-    Route::get("/messages",[UserController::class, 'messages'])->name('user_messages');
-
-});
 
 
 Route::get('/', function () {
@@ -35,6 +30,9 @@ Route::get('/', function () {
 
 Route::view('/loginuser','home.login');
 Route::view('/registeruser','home.register');
+Route::get('/logoutuser', [HomeController::class, 'logout'])->name('logoutuser');
+Route::view('/loginadmin','admin.login');
+Route::post('/loginadmincheck', [HomeController::class, 'loginadmin'])->name('loginadmin');
 
 Route::prefix('/')->name('.home')->controller(HomeController::class)->group(function(){
     Route::get('/','index')->name('.index');
@@ -57,13 +55,13 @@ Route::get('/categoryhouses/{id}/{slug}', [HomeController::class, 'categoryhouse
 
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
 
 
 ///////////////////////////////Admin Page////////////////////////////////
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::middleware('admin')->prefix('admin')->name('admin.')->group(function(){
     Route::get('/',[AdminHomeController::class,'index'])->name('.index');
 
     Route::get('/setting',[AdminHomeController::class,'setting'])->name('.setting');
@@ -135,11 +133,24 @@ Route::prefix('admin')->name('admin.')->group(function(){
     });
 
 
+    /*             Users                */
+
+
+    Route::prefix('user')->name('user.')->controller(AdminUserController::class)->group(function(){
+        Route::get('/','index')->name('index');
+        Route::post('/update/{id}','update')->name('update');
+        Route::post('/addrole/{id}','addrole')->name('addrole');
+        Route::get('/show/{id}','show')->name('show');
+        Route::get('/edit/{id}','edit')->name('edit');
+        Route::get('/destroy/{id}','destroy')->name('destroy');
+        Route::post('/removerole/{id}','removerole')->name('removerole');
+        
+    });
 
 });
 
 
 
-Route::get('/admin/login',[\App\Http\Controllers\Admin\HomeController::class,'login'])->name("admin_login");
-Route::post('/admin/login/check',[\App\Http\Controllers\Admin\HomeController::class,'login_check'])->name("admin_login_check");
-Route::get('/logout',[\App\Http\Controllers\Admin\HomeController::class,'logout'])->name("logout");
+// Route::get('/admin/login',[\App\Http\Controllers\Admin\HomeController::class,'login'])->name("admin_login");
+// Route::post('/admin/login/check',[\App\Http\Controllers\Admin\HomeController::class,'login_check'])->name("admin_login_check");
+// Route::get('/logout',[\App\Http\Controllers\Admin\HomeController::class,'logout'])->name("logout");

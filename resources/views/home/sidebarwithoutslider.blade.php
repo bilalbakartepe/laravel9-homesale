@@ -35,7 +35,7 @@
                         <div class="navbar-nav ml-auto py-0">
                             @auth
                             <a class="nav-item nav-link">{{Auth::user()->name}}</a>
-                            <a href="/logout" class="nav-item nav-link">Logout</a>
+                            <a href="/logoutuser" class="nav-item nav-link">Logout</a>
                             @else
                             <a href="/loginuser" class="nav-item nav-link">Login</a>
                             <a href="/registeruser" class="nav-item nav-link">Register</a>
