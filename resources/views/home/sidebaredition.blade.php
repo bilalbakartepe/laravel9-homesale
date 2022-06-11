@@ -16,8 +16,15 @@
             </div>
             <div class="navbar-nav ml-auto py-0">
                 @auth
-                <a class="nav-item nav-link">{{Auth::user()->name}}</a>
-                <a href="/logoutuser" class="nav-item nav-link">Logout</a>
+                    <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{Auth::user()->name}}</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a href="/logoutuser" class="nav-item nav-link">My Account</a>
+                        <a href="/logoutuser" class="nav-item nav-link">My Adverts</a>
+                        <a href="/logoutuser" class="nav-item nav-link">My Reviews</a>
+                        <a href="/logoutuser" class="nav-item nav-link">Logout</a>
+                    </div>
+                </div>
                 @else
                 <a href="/loginuser" class="nav-item nav-link">Login</a>
                 <a href="/registeruser" class="nav-item nav-link">Register</a>
