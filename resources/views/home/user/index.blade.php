@@ -28,7 +28,13 @@
             <!-- Shop Product Start -->
             <div class="col-lg-9 col-md-12">
                 <div class="row pb-3">
-                    @include('user.profile')
+                    @if($data=="reviews")
+                        @include('home.user.reviews')
+                    @elseif($data=="adverts")
+                        @include('home.user.adverts')
+                    
+                    @endif
+                    
                 </div>
             </div>
             <!-- Shop Product End -->

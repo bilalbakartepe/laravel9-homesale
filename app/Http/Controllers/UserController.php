@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Auth;
 
 class UserController extends Controller
 {
@@ -13,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('home.user.index');
+        $data="general";
+        return view('home.user.index',['data'=>$data]);
     }
 
     /**
@@ -24,6 +27,31 @@ class UserController extends Controller
     public function create()
     {
         //
+    }
+
+
+    public function reviews()
+    {
+        $id=Auth::user();
+        $id=$id->id;
+        $comments=DB::table('comments')->where('user_id',$id)->get();
+        $data="reviews";
+        return view('home.user.index',[
+            'data'=>$data,
+            'comments'=>$comments]);
+        
+    }
+
+    public function adverts()
+    {
+        $id=Auth::user();
+        $id=$id->id;
+        $adverts=DB::table('homes')->where('userid',$id)->get();
+        $data="adverts";
+        return view('home.user.index',[
+            'data'=>$data,
+            'adverts'=>$adverts]);
+        
     }
 
     /**

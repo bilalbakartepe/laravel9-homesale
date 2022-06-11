@@ -36,10 +36,9 @@ Route::prefix('/')->name('home.')->controller(HomeController::class)->group(func
     Route::post('/storemessage','storemessage')->name('storemessage');
     Route::post('/storecomment','storecomment')->name('storecomment');
     Route::get('/faq','faq')->name('faq');
-    Route::view('/loginuser','login');
+    Route::view('/loginuser','home.login');
     Route::view('/registeruser','register');
     Route::get('/logoutuser', [HomeController::class, 'logout'])->name('logoutuser');
-    Route::view('/loginadmin','admin.login')->name('admin.login');
     Route::post('/loginadmincheck', [HomeController::class, 'loginadmin'])->name('loginadmin');
     Route::get('/categoryhouses/{id}/{slug}', [HomeController::class, 'categoryhouses'])->name('categoryhouses');
     Route::get('/house/{houseid}','house')->name('.house');
@@ -54,7 +53,7 @@ Route::prefix('/')->name('home.')->controller(HomeController::class)->group(func
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
 // })->name('dashboard');
-
+Route::view('/loginadmin','admin.login')->name('admin.login');
 
 ///////////////////////////////User Auth////////////////////////////////
 Route::middleware('auth')->group(function(){
@@ -62,31 +61,36 @@ Route::middleware('auth')->group(function(){
     Route::prefix('/userpanel')->name('userpanel.')->group(function(){
         
         Route::get('/',[UserController::class,'index'])->name('.index');
-
-
+        Route::prefix('reviews')->name('reviews.')->controller(UserController::class)->group(function(){
+            //***revievs create vs.. */
+        });
+        Route::get('/adverts',[UserController::class,'adverts'])->name('adverts');
+        Route::prefix('adverts')->name('adverts.')->controller(UserController::class)->group(function(){
+            //****adverts create vs.. */
+        });
     });
 
 ///////////////////////////////Admin Page////////////////////////////////
-    Route::middleware('/admin')->prefix('admin')->name('admin.')->group(function(){
-        Route::get('/',[AdminHomeController::class,'index'])->name('.index');
+    Route::middleware('admin')->prefix('admin')->name('admin.')->group(function(){
+        Route::get('/',[AdminHomeController::class,'index'])->name('index');
 
-        Route::get('/setting',[AdminHomeController::class,'setting'])->name('.setting');
-        Route::post('/setting/update',[AdminHomeController::class,'update'])->name('.setting.update');
+        Route::get('/setting',[AdminHomeController::class,'setting'])->name('setting');
+        Route::post('/setting/update',[AdminHomeController::class,'update'])->name('setting.update');
 
 
         /////////////////////////Category admin/////////////
-        Route::prefix('category')->name('.category')->controller(CategoryController::class)->group(function(){
-            Route::get('/','index')->name('.index');
-            Route::get('/create','create')->name('.create');
-            Route::post('/store','store')->name('.store');
-            Route::get('/edit/{id}','edit')->name('.edit');
-            Route::post('/update/{id}','update')->name('.update');
-            Route::get('/show/{id}','show')->name('.show');
-            Route::get('/destroy/{id}','destroy')->name('.destroy');
+        Route::prefix('category')->name('category.')->controller(CategoryController::class)->group(function(){
+            Route::get('/','index')->name('index');
+            Route::get('/create','create')->name('create');
+            Route::post('/store','store')->name('store');
+            Route::get('/edit/{id}','edit')->name('edit');
+            Route::post('/update/{id}','update')->name('update');
+            Route::get('/show/{id}','show')->name('show');
+            Route::get('/destroy/{id}','destroy')->name('destroy');
         });
 
         /*              Home                    */
-        Route::prefix('house')->name('.house')->controller(AdminHouseController::class)->group(function(){
+        Route::prefix('house')->name('house')->controller(AdminHouseController::class)->group(function(){
             Route::get('/','index')->name('.index');
             Route::get('/create','create')->name('.create');
             Route::post('/store','store')->name('.store');
@@ -98,7 +102,7 @@ Route::middleware('auth')->group(function(){
 
         /*              Images                  */
 
-        Route::prefix('image')->name('.image')->controller(AdminImageController::class)->group(function(){
+        Route::prefix('image')->name('image')->controller(AdminImageController::class)->group(function(){
             Route::get('/{pid}','index')->name('.index');
             
             Route::post('/store/{pid}','store')->name('.store');
@@ -117,7 +121,7 @@ Route::middleware('auth')->group(function(){
         });
 
         /*              FAQ                    */
-        Route::prefix('faq')->name('.faq')->controller(FaqController::class)->group(function(){
+        Route::prefix('faq')->name('faq')->controller(FaqController::class)->group(function(){
             Route::get('/','index')->name('.index');
             Route::get('/create','create')->name('.create');
             Route::post('/store','store')->name('.store');

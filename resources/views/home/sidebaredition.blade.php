@@ -17,11 +17,11 @@
             <div class="navbar-nav ml-auto py-0">
                 @auth
                     <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{Auth::user()->name}}</a>
+                    <a href="/userpanel" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{Auth::user()->name}}</a>
                     <div class="dropdown-menu rounded-0 m-0">
-                        <a href="/logoutuser" class="nav-item nav-link">My Account</a>
-                        <a href="/logoutuser" class="nav-item nav-link">My Adverts</a>
-                        <a href="/logoutuser" class="nav-item nav-link">My Reviews</a>
+                        <a href="/userpanel/account" class="nav-item nav-link">My Account</a>
+                        <a href="/userpanel/adverts" class="nav-item nav-link">My Adverts</a>
+                        <a href="/userpanel/reviews" class="nav-item nav-link">My Reviews</a>
                         <a href="/logoutuser" class="nav-item nav-link">Logout</a>
                     </div>
                 </div>
