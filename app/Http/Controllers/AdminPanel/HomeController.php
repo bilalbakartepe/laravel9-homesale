@@ -34,7 +34,13 @@ class HomeController extends Controller
             
         }
 
-        return view("admin.setting",['data'=>$data]);
+        $messages=DB::table('messages')->where('status','New')->get();
+        $comments=DB::table('comments')->where('status','New')->get();
+
+        return view("admin.setting",[
+            'data'=>$data,
+            'messages'=>$messages,
+            'comments'=>$comments]);
     }
 
     /**

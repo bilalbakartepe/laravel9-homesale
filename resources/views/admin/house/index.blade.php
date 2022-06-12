@@ -65,7 +65,7 @@
 
                       </td>
                       <td>
-                          <a href="/admin/image/{{$rs->id}}"
+                          <a href="/userpanel/image/{{$rs->id}}"
                             onclick="return !window.open(this.href,'','top=50 left=100 width=1100,height=700')">
                             <img src="{{asset('assets')}}/Admin/img/imgGallery.png" > 
                           </a>
@@ -80,14 +80,14 @@
                         
                       </td>
                       <td>
-                        <a href="/admin/house/edit/{{$rs->id}}" >
+                        <a href="/userpanel/house/edit/{{$rs->id}}" >
                         <i class="fa fa-fw fa-edit"></i> Edit</a></td>
                       <td>
-                      <a href="/admin/house/destroy/{{$rs->id}}" onclick="return confirm('Are you sure for deleting ?')">
+                      <a href="/userpanel/house/destroy/{{$rs->id}}" onclick="return confirm('Are you sure for deleting ?')">
                         <i class="fa fa-fw fa-ban"></i>Delete</a>
 
                       <td>
-                      <a href="/admin/house/show/{{$rs->id}}">
+                      <a href="/userpanel/house/show/{{$rs->id}}">
                         <i class="fa fa-fw fa-bars"></i> Show</a></td>
                     </tr>
                   @endforeach

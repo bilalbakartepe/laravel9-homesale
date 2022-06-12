@@ -115,6 +115,23 @@ class HomeController extends Controller
         return redirect("/house/$request->house_id");
 
     }
+    public function updatecomment(Request $request,$id){
+        
+        $data=Comment::find($id);
+        if($request->comment)
+            $data->comment=$request->comment;
+        if($request->rate)
+            $data->rate=$request->rate;
+        
+        $data->home_id=$request->house_id;
+        $data->user_id=Auth::id();
+        $data->ip=request()->ip();
+        
+        $data->update();
+
+        return redirect("/userpanel/reviews");
+
+    }
 
     public function references (){
         

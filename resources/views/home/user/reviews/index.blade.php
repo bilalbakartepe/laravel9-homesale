@@ -13,8 +13,12 @@
 
     <td>{{$rs->comment}}</td>
     <td>{{$rs->rate}}</td>
-    <td><a href="/house/{{$rs->home_id}}">{{\app\Http\Controllers\AdminPanel\CommentConroller::getHomeTitle($rs->home_id)}}</a> </td>
+    <td><a href="/house/{{$rs->home_id}}">{{App\Http\Controllers\AdminPanel\CommentConroller::getHomeTitle($rs->home_id)}}</a> </td>
     <td>{{$rs->status}}</td>    
+    <td>
+        <a href="/userpanel/reviews/edit/{{$rs->id}}" >
+        <i class="fa fa-fw fa-edit"></i> Edit</a>
+    </td>
 </tr>
 @endforeach
 </tbody></table>

@@ -204,5 +204,6 @@
                   <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Save</button>
                   </div>
+                </form>
             </div>
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use App\Models\Comment;
 
 class UserController extends Controller
 {
@@ -15,8 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data="general";
-        return view('home.user.index',['data'=>$data]);
+        $options="general";
+        return view('home.user.index',['options'=>$options]);
     }
 
     /**
@@ -35,22 +36,20 @@ class UserController extends Controller
         $id=Auth::user();
         $id=$id->id;
         $comments=DB::table('comments')->where('user_id',$id)->get();
-        $data="reviews";
+        $options="review";
         return view('home.user.index',[
-            'data'=>$data,
+            'options'=>$options,
             'comments'=>$comments]);
         
     }
 
-    public function adverts()
+    public function reviewsedit($id)
     {
-        $id=Auth::user();
-        $id=$id->id;
-        $adverts=DB::table('homes')->where('userid',$id)->get();
-        $data="adverts";
+        $comment=Comment::find($id);
+        $options="reviewsedit";
         return view('home.user.index',[
-            'data'=>$data,
-            'adverts'=>$adverts]);
+            'options'=>$options,
+            'comment'=>$comment]);
         
     }
 

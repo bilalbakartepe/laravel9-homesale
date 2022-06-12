@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -46,8 +47,14 @@ class CategoryController extends Controller
      public function index()
     {
         $data=Category::all();
-        return view("admin.category.index",['data'=>$data]);
-    }
+        $messages=DB::table('messages')->where('status','New')->get();
+        $comments=DB::table('comments')->where('status','New')->get();
+
+        return view("admin.category.index",[
+            'data'=>$data,
+            'messages'=>$messages,
+            'comments'=>$comments]);
+        }
 
     /**
      * Show the form for creating a new resource.
@@ -57,7 +64,13 @@ class CategoryController extends Controller
     public function create()
     {
         $data=Category::all();
-        return view("admin.category.create",['data'=>$data]);
+        $messages=DB::table('messages')->where('status','New')->get();
+        $comments=DB::table('comments')->where('status','New')->get();
+
+        return view("admin.category.create",[
+            'data'=>$data,
+            'messages'=>$messages,
+            'comments'=>$comments]);        
     }
 
     /**
@@ -91,7 +104,14 @@ class CategoryController extends Controller
     public function show(Category $category,$id)
     {
         $data=Category::find($id);
-        return view("admin.category.show",['data' => $data]);
+        $messages=DB::table('messages')->where('status','New')->get();
+        $comments=DB::table('comments')->where('status','New')->get();
+
+        return view("admin.category.show",[
+            'data'=>$data,
+            'messages'=>$messages,
+            'comments'=>$comments]);        
+        
     }
 
     /**
@@ -104,7 +124,14 @@ class CategoryController extends Controller
     {
         $data=Category::find($id);
         $datalist=Category::all();
-        return view("admin.category.edit",['data' => $data ,'datalist'=>$datalist]);
+        $messages=DB::table('messages')->where('status','New')->get();
+        $comments=DB::table('comments')->where('status','New')->get();
+
+        return view("admin.category.edit",[
+            'data' => $data ,
+            'datalist'=>$datalist,
+            'messages'=>$messages,
+            'comments'=>$comments]);
     }
 
     /**

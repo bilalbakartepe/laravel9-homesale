@@ -1,52 +1,44 @@
 <?php
 
-namespace App\Http\Controllers\AdminPanel;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Home;
-use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Auth;
 use Illuminate\Support\Facades\DB;
-
-
-class AdminHomeController extends Controller
+use App\Models\Category;
+use App\Models\Home;
+use Illuminate\Support\Facades\Storage;
+class UserHouseController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-
-     public function index()
+    public function index()
     {
-        $data=Home::all();
-        $messages=DB::table('messages')->where('status','New')->get();
-        $comments=DB::table('comments')->where('status','New')->get();
-
-        return view("admin.house.index",[
-            'data'=>$data,
-            'messages'=>$messages,
-            'comments'=>$comments]);
+        $id=Auth::user();
+        $id=$id->id;
+        $adverts=DB::table('homes')->where('userid',$id)->get();
+        $options="adverts";
+        return view('home.user.index',[
+            'options'=>$options,
+            'adverts'=>$adverts]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
-     */ 
+     */
     public function create()
     {
-        $data=Category::all();
-        $messages=DB::table('messages')->where('status','New')->get();
-        $comments=DB::table('comments')->where('status','New')->get();
-
-        return view("admin.house.create",[
-            'data'=>$data,
-            'messages'=>$messages,
-            'comments'=>$comments]);
-        
+        $categories=Category::all();
+        $options="advertscreate";
+        return view("home.user.index",[
+            'categories'=>$categories,
+            'options'=>$options
+        ]);
     }
 
     /**
@@ -59,7 +51,7 @@ class AdminHomeController extends Controller
     {
         $data=new Home();
         $data->categoryid=$request->category_id;
-        $data->userid=Auth::user()->id;//$request->parent_id;
+        $data->userid=Auth::user()->id;
         $data->title = $request->title;
         $data->keywords = $request->keywords;
         $data->description = $request->description;
@@ -74,70 +66,58 @@ class AdminHomeController extends Controller
         $data->floor = $request->floor;
         $data->building_age = $request->building_age;
         $data->dues = $request->dues;
-        $data->status = $request->status;
+
         if($request->file('image')){
             $data->image=$request->file('image')->store('images');
         }
 
         $data->save();
 
-        return redirect("/admin/house");
+        return redirect("/userpanel/adverts");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Home  $home
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Home $home,$id)
+    public function show($id)
     {
-        $data=Home::find($id);
-        $messages=DB::table('messages')->where('status','New')->get();
-        $comments=DB::table('comments')->where('status','New')->get();
-
-        return view("admin.house.show",[
-            'data'=>$data,
-            'messages'=>$messages,
-            'comments'=>$comments]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Home  $home
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Home $home,$id)
+    public function edit($id)
     {
-        $data=Home::find($id);
+        $house=Home::find($id);
         $datalist=Category::all();
-        $dataCategory=Category::find($data->categoryid);
-
-        $messages=DB::table('messages')->where('status','New')->get();
-        $comments=DB::table('comments')->where('status','New')->get();
-
-
-        return view("admin.house.edit",[
-            'data' => $data ,
+        $dataCategory=Category::find($house->categoryid);
+        $options="advertsedit";
+        return view("home.user.index",[
+            'house' => $house ,
             'datalist'=>$datalist ,
             'dataCategory'=>$dataCategory,
-            'messages'=>$messages,
-            'comments'=>$comments]);
+            'options'=>$options
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Home  $home
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Home $home,$id)
+    public function update(Request $request, $id)
     {
         $data=Home::find($id);
         $data->categoryid=$request->categoryid;
-        $data->userid=0;//$request->parent_id;
         $data->title = $request->title;
         $data->keywords = $request->keywords;
         $data->description = $request->description;
@@ -152,22 +132,22 @@ class AdminHomeController extends Controller
         $data->floor = $request->floor;
         $data->building_age = $request->building_age;
         $data->dues = $request->dues;
-        $data->status = $request->status;
 
         if($request->file('image')){
             $data->image=$request->file('image')->store('images');
         }
         $data->update();
 
-        return redirect("/admin/house");
+        return redirect("/userpanel/adverts");
     }
 
     /**
      * Remove the specified resource from storage.
-     * @param  \App\Models\Home  $home
+     *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Home $home,$id)
+    public function destroy($id)
     {
         $data=Home::find($id);
         if (Storage::exists($data->image)){
@@ -175,6 +155,6 @@ class AdminHomeController extends Controller
         }
 
         $data->delete();
-        return redirect("/admin/house");
+        return redirect("/userpanel/adverts");
     }
 }

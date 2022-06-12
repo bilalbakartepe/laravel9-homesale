@@ -28,11 +28,16 @@
             <!-- Shop Product Start -->
             <div class="col-lg-9 col-md-12">
                 <div class="row pb-3">
-                    @if($data=="reviews")
-                        @include('home.user.reviews')
-                    @elseif($data=="adverts")
-                        @include('home.user.adverts')
-                    
+                    @if($options=="reviews")
+                        @include('home.user.reviews.index')
+                    @elseif($options=="adverts")
+                        @include('home.user.adverts.index')
+                    @elseif($options=="reviewsedit")
+                        @include('home.user.reviews.edit')
+                    @elseif($options=="advertsedit")
+                        @include('home.user.adverts.edit')
+                    @elseif($options=="advertscreate")
+                        @include('home.user.adverts.create')
                     @endif
                     
                 </div>

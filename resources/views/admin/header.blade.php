@@ -24,21 +24,23 @@
                   <li>
                     <!-- inner menu: contains the actual data -->
                     <ul class="menu">
+                      @foreach($messages as $msg)
                       <li><!-- start message -->
-                        <a href="#">
+                        <a href="/admin/message/show/{{$msg->id}}">
                           <div class="pull-left">
                             <img src="{{asset('assets')}}/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
                           </div>
                           <h4>
-                            Support Team
-                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                            {{$msg->name}}
+                            <!-- <small><i class="fa fa-clock-o"></i> 5 mins</small> -->
                           </h4>
-                          <p>Why not buy a new awesome theme?</p>
+                          <p>{{$msg->subject}}</p>
                         </a>
                       </li><!-- end message -->
+                      @endforeach
                     </ul>
                   </li>
-                  <li class="footer"><a href="#">See All Messages</a></li>
+                  <li class="footer"><a href="/admin/message">See All Messages</a></li>
                 </ul>
               </li>
               <!-- Notifications: style can be found in dropdown.less -->
@@ -52,14 +54,16 @@
                   <li>
                     <!-- inner menu: contains the actual data -->
                     <ul class="menu">
+                    @foreach($comments as $comment)
                       <li>
-                        <a href="#">
-                          <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                        <a href="/admin/comment/show/{{$comment->id}}">
+                          <i class="fa fa-users text-aqua"></i>{{App\Http\Controllers\AdminPanel\CommentConroller::getHomeTitle($comment->home_id)}}
                         </a>
                       </li>
+                      @endforeach
                     </ul>
                   </li>
-                  <li class="footer"><a href="#">View all</a></li>
+                  <li class="footer"><a href="/admin/comment">View all</a></li>
                 </ul>
               </li>
               <!-- Tasks: style can be found in dropdown.less -->

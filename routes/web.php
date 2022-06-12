@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminPanel\FaqController;
 use App\Http\Controllers\AdminPanel\CommentConroller;
 use App\Http\Controllers\AdminPanel\AdminUserController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserHouseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +36,7 @@ Route::prefix('/')->name('home.')->controller(HomeController::class)->group(func
     Route::get('/references','references')->name('references');
     Route::post('/storemessage','storemessage')->name('storemessage');
     Route::post('/storecomment','storecomment')->name('storecomment');
+    Route::post('/updatecomment/{id}','updatecomment')->name('updatecomment');
     Route::get('/faq','faq')->name('faq');
     Route::view('/loginuser','home.login');
     Route::view('/registeruser','register');
@@ -61,13 +63,42 @@ Route::middleware('auth')->group(function(){
     Route::prefix('/userpanel')->name('userpanel.')->group(function(){
         
         Route::get('/',[UserController::class,'index'])->name('.index');
+        Route::get('/reviews',[UserController::class,'reviews'])->name('reviews');
+
+        //*             Reviews                 */
+
         Route::prefix('reviews')->name('reviews.')->controller(UserController::class)->group(function(){
             //***revievs create vs.. */
+
+            Route::get('/edit/{id}','reviewsedit')->name('edit');
+
+
         });
-        Route::get('/adverts',[UserController::class,'adverts'])->name('adverts');
-        Route::prefix('adverts')->name('adverts.')->controller(UserController::class)->group(function(){
+        /*             Adverts                 */
+        //Route::get('/adverts',[UserController::class,'adverts'])->name('adverts');
+
+        Route::prefix('adverts')->name('adverts.')->controller(UserHouseController::class)->group(function(){
             //****adverts create vs.. */
+            Route::get('/','index')->name('.index');
+            Route::get('/create','create')->name('.create');
+            Route::post('/store','store')->name('.store');
+            Route::get('/edit/{id}','edit')->name('.edit');
+            Route::post('/update/{id}','update')->name('.update');
+            Route::get('/show/{id}','show')->name('.show');
+            Route::get('/destroy/{id}','destroy')->name('.destroy');
+            
         });
+
+        /*              Images                  */
+
+        Route::prefix('image')->name('image')->controller(AdminImageController::class)->group(function(){
+            Route::get('/{pid}','index')->name('.index');
+            
+            Route::post('/store/{pid}','store')->name('.store');
+            Route::post('/update/{pid}/{id}','update')->name('.update');
+            Route::get('/destroy/{pid}/{id}','destroy')->name('.destroy');
+        });
+
     });
 
 ///////////////////////////////Admin Page////////////////////////////////

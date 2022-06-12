@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminPanel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Message;
+use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
@@ -16,8 +17,13 @@ class MessageController extends Controller
     public function index()
     {
         $data=Message::all();
-
-        return view('/admin/message/index',['data'=>$data]);
+        $messages=DB::table('messages')->where('status','New')->get();
+        $comments=DB::table('comments')->where('status','New')->get();     
+        
+        return view('/admin/message/index',[
+            'data'=>$data,
+            'messages'=>$messages,
+            'comments'=>$comments]);
     }
 
     /**

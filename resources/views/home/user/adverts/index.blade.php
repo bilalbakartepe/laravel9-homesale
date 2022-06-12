@@ -1,10 +1,11 @@
 <div class="row">
-    <div class="col-sm-3">
+    <div>
         <a href="/userpanel/adverts/create" class="btn btn-block btn-primary btn-lg">
             Add House
         </a>
     </div>
 </div>
+
 <table class="table table-bordered">
     <tbody>
     <tr> 
@@ -30,9 +31,9 @@
 
         </td>
         <td>
-            <a href="/admin/image/{{$rs->id}}"
+            <a href="/userpanel/image/{{$rs->id}}"
             onclick="return !window.open(this.href,'','top=50 left=100 width=1100,height=700')">
-            <img src="{{asset('assets')}}/Admin/img/imgGallery.png" > 
+            <img src="{{asset('assets')}}/user/img/imgGallery.png" > 
             </a>
             
             
@@ -41,9 +42,7 @@
         <td>{{$rs->price}}</td>
         <td>{{$rs->location}}</td>
         <td>{{$rs->status}}</td>
-        <td>
-        
-        </td>
+
         <td>
         <a href="/userpanel/adverts/edit/{{$rs->id}}" >
         <i class="fa fa-fw fa-edit"></i> Edit</a></td>

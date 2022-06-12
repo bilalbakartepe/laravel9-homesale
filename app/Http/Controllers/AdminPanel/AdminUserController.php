@@ -60,9 +60,14 @@ class AdminUserController extends Controller
     {
         $data=User::find($id);
         $roles=Role::all();
+        $messages=DB::table('messages')->where('status','New')->get();
+        $comments=DB::table('comments')->where('status','New')->get();
+
         return view("admin.user.show",[
             'data'=>$data,
-            'roles'=>$roles
+            'roles'=>$roles,
+            'messages'=>$messages,
+            'comments'=>$comments
         ]);
     }
 

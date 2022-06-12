@@ -5,6 +5,8 @@ namespace App\Http\Controllers\AdminPanel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Faq;
+use Illuminate\Support\Facades\DB;
+
 class FaqController extends Controller
 {
     /**
@@ -15,7 +17,14 @@ class FaqController extends Controller
     public function index()
     {
         $data=Faq::all();
-        return view("admin.faq.index",['data'=>$data]);
+
+        $messages=DB::table('messages')->where('status','New')->get();
+        $comments=DB::table('comments')->where('status','New')->get();     
+
+        return view("admin.faq.index",[
+            'data'=>$data,
+            'messages'=>$messages,
+            'comments'=>$comments]);
     }
 
     /**
@@ -26,7 +35,14 @@ class FaqController extends Controller
     public function create()
     {
         $data=Faq::all();
-        return view("admin.faq.create",['data'=>$data]);
+
+        $messages=DB::table('messages')->where('status','New')->get();
+        $comments=DB::table('comments')->where('status','New')->get();     
+
+        return view("admin.faq.create",[
+            'data'=>$data,
+            'messages'=>$messages,
+            'comments'=>$comments]);
     }
 
     /**
@@ -58,8 +74,13 @@ class FaqController extends Controller
     public function show($id)
     {
         $data=Faq::find($id);
+        $messages=DB::table('messages')->where('status','New')->get();
+        $comments=DB::table('comments')->where('status','New')->get();     
 
-        return view('/admin/faq/show',['data'=>$data]);
+        return view("admin.faq.show",[
+            'data'=>$data,
+            'messages'=>$messages,
+            'comments'=>$comments]);
     }
 
     /**
@@ -71,7 +92,13 @@ class FaqController extends Controller
     public function edit($id)
     {
         $data=Faq::find($id);
-        return view('/admin/faq/edit',['data'=>$data]);
+        $messages=DB::table('messages')->where('status','New')->get();
+        $comments=DB::table('comments')->where('status','New')->get();     
+
+        return view("admin.faq.edit",[
+            'data'=>$data,
+            'messages'=>$messages,
+            'comments'=>$comments]);
     }
 
     /**
