@@ -7,6 +7,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use App\Models\Home;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Storage;
 class UserHouseController extends Controller
 {
@@ -21,9 +22,12 @@ class UserHouseController extends Controller
         $id=$id->id;
         $adverts=DB::table('homes')->where('userid',$id)->get();
         $options="adverts";
+        $setting=Setting::first();
+        
         return view('home.user.index',[
             'options'=>$options,
-            'adverts'=>$adverts]);
+            'adverts'=>$adverts,
+            'setting'=>$setting]);
     }
 
     /**
@@ -35,9 +39,12 @@ class UserHouseController extends Controller
     {
         $categories=Category::all();
         $options="advertscreate";
+        $setting=Setting::first();
+        
         return view("home.user.index",[
             'categories'=>$categories,
-            'options'=>$options
+            'options'=>$options,
+            'setting'=>$setting
         ]);
     }
 
@@ -99,11 +106,14 @@ class UserHouseController extends Controller
         $datalist=Category::all();
         $dataCategory=Category::find($house->categoryid);
         $options="advertsedit";
+        $setting=Setting::first();
+        
         return view("home.user.index",[
             'house' => $house ,
             'datalist'=>$datalist ,
             'dataCategory'=>$dataCategory,
-            'options'=>$options
+            'options'=>$options,
+            'setting'=>$setting
         ]);
     }
 

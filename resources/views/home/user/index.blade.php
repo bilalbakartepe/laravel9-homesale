@@ -38,6 +38,8 @@
                         @include('home.user.adverts.edit')
                     @elseif($options=="advertscreate")
                         @include('home.user.adverts.create')
+                    @elseif($options=="general")
+                        @include('profile.show')
                     @endif
                     
                 </div>

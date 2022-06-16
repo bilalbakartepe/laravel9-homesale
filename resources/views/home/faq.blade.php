@@ -1,6 +1,7 @@
 @extends('layouts.nosliderfrontbase')
 
 
+
 @section('head')
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -10,6 +11,10 @@
 
 
 @section('title', "FAQs")
+
+@section('description',$setting->description)
+@section('keywords',$setting->keywords)
+@section('icon',Storage::url($setting->icon))
 
 @section('content')
 <div class="container-fluid bg-secondary mb-5">

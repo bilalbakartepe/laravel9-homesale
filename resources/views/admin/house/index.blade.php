@@ -1,7 +1,9 @@
 @extends('layouts.adminbase')
 
-@section('tittle', "Agent Admin Panel House")
-
+@section('title', "Agent Admin Panel House")
+@section('description',$setting->description)
+@section('keywords',$setting->keywords)
+@section('icon',Storage::url($setting->icon))
 
 @section('content')
 <div class="content-wrapper">
@@ -80,14 +82,14 @@
                         
                       </td>
                       <td>
-                        <a href="/userpanel/house/edit/{{$rs->id}}" >
+                        <a href="/admin/house/edit/{{$rs->id}}" >
                         <i class="fa fa-fw fa-edit"></i> Edit</a></td>
                       <td>
-                      <a href="/userpanel/house/destroy/{{$rs->id}}" onclick="return confirm('Are you sure for deleting ?')">
+                      <a href="/admin/house/destroy/{{$rs->id}}" onclick="return confirm('Are you sure for deleting ?')">
                         <i class="fa fa-fw fa-ban"></i>Delete</a>
 
                       <td>
-                      <a href="/userpanel/house/show/{{$rs->id}}">
+                      <a href="/admin/house/show/{{$rs->id}}">
                         <i class="fa fa-fw fa-bars"></i> Show</a></td>
                     </tr>
                   @endforeach

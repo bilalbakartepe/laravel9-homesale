@@ -5,29 +5,15 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('home_index') }}">
+                    <a href="{{ route('dashboard') }}">
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-
-                    <x-jet-nav-link href="{{ route('home_index') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Home') }}
-                    </x-jet-nav-link>
-
-                    <x-jet-nav-link href="localhost:8080/user/profile" >
-                        {{ __('Profile') }}
-                    </x-jet-nav-link>
-
-
-                    <x-jet-nav-link href="{{ route('user_reservations') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Revervations') }}
-                    </x-jet-nav-link>
-
-                    <x-jet-nav-link href="{{ route('user_messages') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Messages') }}
+                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -123,12 +109,11 @@
                             <div class="border-t border-gray-100"></div>
 
                             <!-- Authentication -->
-                            <form method="POST" action="{{ route('logout') }}">
+                            <form method="POST" action="{{ route('logout') }}" x-data>
                                 @csrf
 
                                 <x-jet-dropdown-link href="{{ route('logout') }}"
-                                         onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                                         @click.prevent="$root.submit();">
                                     {{ __('Log Out') }}
                                 </x-jet-dropdown-link>
                             </form>
@@ -152,8 +137,8 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('home_index') }}" :active="request()->routeIs('dashboard')">
-                {{ __('home') }}
+            <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
         </div>
 
@@ -185,12 +170,11 @@
                 @endif
 
                 <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
+                <form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf
 
                     <x-jet-responsive-nav-link href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                    this.closest('form').submit();">
+                                   @click.prevent="$root.submit();">
                         {{ __('Log Out') }}
                     </x-jet-responsive-nav-link>
                 </form>

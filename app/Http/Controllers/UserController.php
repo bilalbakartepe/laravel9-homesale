@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Models\Comment;
+use App\Models\Setting;
 
 class UserController extends Controller
 {
@@ -17,7 +18,11 @@ class UserController extends Controller
     public function index()
     {
         $options="general";
-        return view('home.user.index',['options'=>$options]);
+        $setting= Setting::first();
+        
+        return view('home.user.index',[
+            'options'=>$options,
+            'setting'=>$setting]);
     }
 
     /**
@@ -36,10 +41,13 @@ class UserController extends Controller
         $id=Auth::user();
         $id=$id->id;
         $comments=DB::table('comments')->where('user_id',$id)->get();
-        $options="review";
+        $options="reviews";
+        $setting=Setting::first();
+
         return view('home.user.index',[
             'options'=>$options,
-            'comments'=>$comments]);
+            'comments'=>$comments,
+            'setting'=>$setting]);
         
     }
 
@@ -47,9 +55,12 @@ class UserController extends Controller
     {
         $comment=Comment::find($id);
         $options="reviewsedit";
+        $setting=Setting::first();
+
         return view('home.user.index',[
             'options'=>$options,
-            'comment'=>$comment]);
+            'comment'=>$comment,
+            'setting'=>$setting]);
         
     }
 

@@ -2,6 +2,10 @@
 
 @section('title', $house->title)
 
+@section('description',$setting->description)
+@section('keywords',$setting->keywords)
+@section('icon',Storage::url($setting->icon))
+
 @section('content')
 
     <div class="container-fluid bg-secondary mb-5">

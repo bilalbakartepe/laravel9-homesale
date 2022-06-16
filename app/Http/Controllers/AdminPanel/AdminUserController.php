@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\RoleUser;
+use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
 
 class AdminUserController extends Controller
@@ -20,12 +21,14 @@ class AdminUserController extends Controller
     {
         $messages=DB::table('messages')->where('status','New')->get();
         $comments=DB::table('comments')->where('status','New')->get();
+        $setting=Setting::first();
 
         $data=User::all();
         return view("admin.user.index",[
             'data'=>$data,
             'messages'=>$messages,
-            'comments'=>$comments]);
+            'comments'=>$comments,
+            'setting'=>$setting]);
     }
 
 
@@ -62,7 +65,7 @@ class AdminUserController extends Controller
         $roles=Role::all();
         $messages=DB::table('messages')->where('status','New')->get();
         $comments=DB::table('comments')->where('status','New')->get();
-
+ 
         return view("admin.user.show",[
             'data'=>$data,
             'roles'=>$roles,

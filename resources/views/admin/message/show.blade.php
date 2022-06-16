@@ -1,7 +1,5 @@
 @extends('layouts.adminwindow')
 
-@section('title', "Show Message: ".$data->subject)
-
 @section('content')
   <br>
           <div>

@@ -1,42 +1,39 @@
 @extends('layouts.adminbase')
 
-@section('tittle', "Agent Admin Panel House")
-
-
+@section('title',$setting->title)
+@section('description',$setting->description)
+@section('keywords',$setting->keywords)
+@section('icon',Storage::url($setting->icon))
 @section('content')
+
 <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h1>
-            Blank page
-            <small>it all starts here</small>
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Examples</a></li>
-            <li class="active">Blank page</li>
-          </ol>
-        </section>
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Welcome {{Auth::user()->name}}
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    </ol>
+  </section>
 
-        <!-- Main content -->
-        <section class="content">
-
-          <!-- Default box -->
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Title</h3>
-              <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              Start creating your amazing application!
-            </div><!-- /.box-body -->
-            <div class="box-footer">
-              Footer
-            </div><!-- /.box-footer-->
-          </div><!-- /.box -->
-
-        </section><!-- /.content -->
+  <!-- Main content -->
+  <section class="content">
+    <div class="col-lg-3 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-yellow">
+        <div class="inner">
+          <h3>
+            {{count($users)}}
+          </h3>
+          <p>
+            User Registrations <br> in Last Month
+          </p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-person-add"></i>
+        </div>
+      </div>
+    </div>
+  </section><!-- /.content -->
 @endsection

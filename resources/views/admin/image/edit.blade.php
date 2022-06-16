@@ -1,6 +1,6 @@
 @extends('layouts.adminbase')
 
-@section('tittle', "Edit House: ".$data->title)
+@section('title', "Edit House: ".$data->title)
 
 
 @section('content')

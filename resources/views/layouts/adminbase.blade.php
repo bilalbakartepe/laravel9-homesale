@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <title>@yield('title')</title>
+    <meta name="description" content="@yield('decription')">
+    <meta name="keywords" content="@yield('keywords')">
+    <meta name="author" content="Bilal Bakartepe">
+    <link rel="icon" type="image/x-icon" href="@yield('icon')">
+
+
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="{{asset('assets')}}/admin/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />

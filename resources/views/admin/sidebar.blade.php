@@ -4,13 +4,19 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
+
+              @if(Auth::user()->profile_photo_path==null)
               <img src="{{asset('assets')}}/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+              
+              @else
+              <img src="{{Storage::url(Auth::user()->profile_photo_path)}}" class="img-circle" alt="User Image" />
+              @endif
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
+              <p>{{Auth::user()->name}}</p>
 
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
+            </div> 
           </div>
           <!-- search form -->
           <form action="#" method="get" class="sidebar-form">

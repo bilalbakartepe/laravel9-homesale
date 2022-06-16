@@ -1,7 +1,7 @@
 
 @extends('layouts.adminwindow')
 
-@section('tittle', "Admin Image Gallery")
+@section('title', "Admin Image Gallery")
 
 
 @section('content')

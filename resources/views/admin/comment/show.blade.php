@@ -2,6 +2,7 @@
 
 @section('title', "Show Comment: ".\app\Http\Controllers\AdminPanel\CommentConroller::getHomeTitle($data->home_id))
 
+
 @section('content')
   <br>
           <div>

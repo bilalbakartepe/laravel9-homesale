@@ -8,7 +8,8 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Setting;
+use Auth;
 
 class AdminHomeController extends Controller
 {
@@ -21,14 +22,19 @@ class AdminHomeController extends Controller
 
      public function index()
     {
+
         $data=Home::all();
         $messages=DB::table('messages')->where('status','New')->get();
         $comments=DB::table('comments')->where('status','New')->get();
 
+        $setting= Setting::first();
+        
+
         return view("admin.house.index",[
             'data'=>$data,
             'messages'=>$messages,
-            'comments'=>$comments]);
+            'comments'=>$comments,
+            'setting'=>$setting]);
     }
 
     /**
@@ -42,10 +48,14 @@ class AdminHomeController extends Controller
         $messages=DB::table('messages')->where('status','New')->get();
         $comments=DB::table('comments')->where('status','New')->get();
 
+        $setting= Setting::first();
+        
+
         return view("admin.house.create",[
             'data'=>$data,
             'messages'=>$messages,
-            'comments'=>$comments]);
+            'comments'=>$comments,
+            'setting'=>$setting]);
         
     }
 
@@ -95,11 +105,13 @@ class AdminHomeController extends Controller
         $data=Home::find($id);
         $messages=DB::table('messages')->where('status','New')->get();
         $comments=DB::table('comments')->where('status','New')->get();
-
+        $setting= Setting::first();
+        
         return view("admin.house.show",[
             'data'=>$data,
             'messages'=>$messages,
-            'comments'=>$comments]);
+            'comments'=>$comments,
+            'setting'=>$setting]);
     }
 
     /**
@@ -116,14 +128,16 @@ class AdminHomeController extends Controller
 
         $messages=DB::table('messages')->where('status','New')->get();
         $comments=DB::table('comments')->where('status','New')->get();
-
+        $setting= Setting::first();
+        
 
         return view("admin.house.edit",[
             'data' => $data ,
             'datalist'=>$datalist ,
             'dataCategory'=>$dataCategory,
             'messages'=>$messages,
-            'comments'=>$comments]);
+            'comments'=>$comments,
+            'setting'=>$setting]);
     }
 
     /**
@@ -137,7 +151,7 @@ class AdminHomeController extends Controller
     {
         $data=Home::find($id);
         $data->categoryid=$request->categoryid;
-        $data->userid=0;//$request->parent_id;
+        $data->userid=Auth::user()->id;//$request->parent_id;
         $data->title = $request->title;
         $data->keywords = $request->keywords;
         $data->description = $request->description;

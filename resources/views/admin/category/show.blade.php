@@ -1,6 +1,10 @@
 @extends('layouts.adminbase')
 
-@section('tittle', "Show Category: ".$data->title)
+@section('title', "Show Category: ".$data->title)
+@section('description',$setting->description)
+@section('keywords',$setting->keywords)
+@section('icon',Storage::url($setting->icon))
+@section('content')
 
 
 @section('content')

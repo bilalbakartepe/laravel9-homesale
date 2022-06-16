@@ -1,7 +1,6 @@
 @extends('layouts.adminbase')
 
-@section('tittle', "Show House: ".$data->title)
-
+@section('title', "Show House: ".$data->title)
 
 @section('content')
 <div class="content-wrapper">

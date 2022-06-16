@@ -38,13 +38,15 @@ Route::prefix('/')->name('home.')->controller(HomeController::class)->group(func
     Route::post('/storecomment','storecomment')->name('storecomment');
     Route::post('/updatecomment/{id}','updatecomment')->name('updatecomment');
     Route::get('/faq','faq')->name('faq');
-    Route::view('/loginuser','home.login');
-    Route::view('/registeruser','register');
+    Route::get('/loginuser','loginuser')->name('.loginuser');
+    Route::get('/registeruser','registeruser')->name('.registeruser');
     Route::get('/logoutuser', [HomeController::class, 'logout'])->name('logoutuser');
     Route::post('/loginadmincheck', [HomeController::class, 'loginadmin'])->name('loginadmin');
     Route::get('/categoryhouses/{id}/{slug}', [HomeController::class, 'categoryhouses'])->name('categoryhouses');
     Route::get('/house/{houseid}','house')->name('.house');
-
+    Route::post('/housesfilter','housesfilter')->name('.housesfilter');
+    Route::post('/housesearch',[HomeController::class,'housesearch'])->name('.housessearch');
+    
 });
 
 
@@ -52,9 +54,10 @@ Route::prefix('/')->name('home.')->controller(HomeController::class)->group(func
 
 
 
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
 Route::view('/loginadmin','admin.login')->name('admin.login');
 
 ///////////////////////////////User Auth////////////////////////////////

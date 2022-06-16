@@ -1,7 +1,9 @@
 @extends('layouts.adminbase')
 
-@section('tittle', "Show House: ".$data->title)
-
+@section('title', "Show House: ".$data->title)
+@section('description',$setting->description)
+@section('keywords',$setting->keywords)
+@section('icon',Storage::url($setting->icon))
 
 @section('head')
     <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>

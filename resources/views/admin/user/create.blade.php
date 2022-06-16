@@ -1,6 +1,9 @@
 @extends('layouts.adminbase')
 
-@section('tittle', "Agent Admin Panel House Create")
+@section('title', "Agent Admin Panel House Create")
+@section('description',$setting->description)
+@section('keywords',$setting->keywords)
+@section('icon',Storage::url($setting->icon))
 
 @section('head')
     <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>

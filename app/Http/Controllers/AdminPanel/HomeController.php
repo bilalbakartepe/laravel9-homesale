@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\AdminPanel;
-
+ 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -9,21 +9,31 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Setting;
 use App\Models\Message;
 use App\Models\Comment;
+
 class HomeController extends Controller
 {
     public function index(){
 
         $messages=DB::table('messages')->where('status','New')->get();
         $comments=DB::table('comments')->where('status','New')->get();
+
+        $setting= Setting::first();
+
+        $users=DB::table('users')->where('created_at','>=',date("Y-m-d",strtotime("-1 month")))->get();
+
+
         return view("admin.index",
         ['messages'=>$messages,
-        'comments'=>$comments]);
+        'comments'=>$comments,
+        'setting'=>$setting,
+        'users'=>$users]);
+
     }
 
     public function setting(){
 
         $data=Setting::first();
-        
+        $setting= Setting::first();
         if($data==null){
 
             $data=new Setting();
@@ -40,6 +50,7 @@ class HomeController extends Controller
         return view("admin.setting",[
             'data'=>$data,
             'messages'=>$messages,
+            'setting'=>$setting,
             'comments'=>$comments]);
     }
 

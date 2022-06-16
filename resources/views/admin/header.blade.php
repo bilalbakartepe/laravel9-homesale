@@ -1,7 +1,7 @@
 <div class="wrapper">
       
       <header class="main-header">
-        <a href="/admin" class="logo"><b>Admin</b>LTE</a>
+        <a href="/admin" class="logo"><b>Admin</b>Panel</a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
@@ -71,25 +71,32 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  @if(Auth::user()->profile_photo_path==null)
                   <img src="{{asset('assets')}}/admin/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                  <span class="hidden-xs">Alexander Pierce</span>
+                  @else
+                  <img src="{{Storage::url(Auth::user()->profile_photo_path)}}" class="user-image" alt="User Image"/>
+                  @endif
+                  <span class="hidden-xs">{{Auth::user()->name}}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="{{asset('assets')}}/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                    @if(Auth::user()->profile_photo_path==null)
+                      <img src="{{asset('assets')}}/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                    @else
+                      <img src="{{Storage::url(Auth::user()->profile_photo_path)}}" class="img-circle" alt="User Image" />
+                    @endif
                     <p>
-                      Alexander Pierce - Web Developer
-                      <small>Member since Nov. 2012</small>
+                      {{Auth::user()->name}}
                     </p>
                   </li>
                   <!-- Menu Body -->
 
                   <!-- Menu Footer-->
                   <li class="user-footer">
-                    <div class="pull-left">
+                    <!-- <div class="pull-left">
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
-                    </div>
+                    </div> -->
                     <div class="pull-right">
                       <a href="/logoutuser" class="btn btn-default btn-flat">Sign out</a>
                     </div>

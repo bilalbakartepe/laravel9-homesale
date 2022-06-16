@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\User;
 use App\Models\Home;
+use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
 
 class CommentConroller extends Controller
@@ -21,11 +22,13 @@ class CommentConroller extends Controller
         $data=Comment::all();
         $messages=DB::table('messages')->where('status','New')->get();
         $comments=DB::table('comments')->where('status','New')->get();     
+        $setting=Setting::first();
 
         return view("admin.comment.index",[
             'data'=>$data,
             'messages'=>$messages,
-            'comments'=>$comments]);
+            'comments'=>$comments,
+            'setting'=>$setting]);
     }
 
     public static function getUserName($id){

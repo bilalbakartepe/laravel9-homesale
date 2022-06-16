@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -50,10 +51,13 @@ class CategoryController extends Controller
         $messages=DB::table('messages')->where('status','New')->get();
         $comments=DB::table('comments')->where('status','New')->get();
 
+        $setting=Setting::first();
+        
         return view("admin.category.index",[
             'data'=>$data,
             'messages'=>$messages,
-            'comments'=>$comments]);
+            'comments'=>$comments,
+            'setting'=>$setting]);
         }
 
     /**
@@ -64,13 +68,16 @@ class CategoryController extends Controller
     public function create()
     {
         $data=Category::all();
+        $setting=Setting::first();
+        
         $messages=DB::table('messages')->where('status','New')->get();
         $comments=DB::table('comments')->where('status','New')->get();
 
         return view("admin.category.create",[
             'data'=>$data,
             'messages'=>$messages,
-            'comments'=>$comments]);        
+            'comments'=>$comments,
+            'setting'=>$setting]);        
     }
 
     /**
@@ -107,10 +114,14 @@ class CategoryController extends Controller
         $messages=DB::table('messages')->where('status','New')->get();
         $comments=DB::table('comments')->where('status','New')->get();
 
+        $setting=Setting::first();
+        
+
         return view("admin.category.show",[
             'data'=>$data,
             'messages'=>$messages,
-            'comments'=>$comments]);        
+            'comments'=>$comments,
+            'setting'=>$setting]);        
         
     }
 
@@ -127,11 +138,15 @@ class CategoryController extends Controller
         $messages=DB::table('messages')->where('status','New')->get();
         $comments=DB::table('comments')->where('status','New')->get();
 
+        $setting=Setting::first();
+        
+
         return view("admin.category.edit",[
             'data' => $data ,
             'datalist'=>$datalist,
             'messages'=>$messages,
-            'comments'=>$comments]);
+            'comments'=>$comments,
+            'setting'=>$setting]);
     }
 
     /**

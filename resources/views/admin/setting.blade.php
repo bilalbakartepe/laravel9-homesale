@@ -1,6 +1,11 @@
 @extends('layouts.adminbase')
-
-@section('tittle', "Settings")
+@if($setting!=null)
+@section('title',$setting->title)
+@section('description',$setting->description)
+@section('keywords',$setting->keywords)
+@section('icon',Storage::url($setting->icon))
+@endif
+@section('content')
 
 @section('head')
     <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>

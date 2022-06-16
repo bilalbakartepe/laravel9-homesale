@@ -1,7 +1,11 @@
 @extends('layouts.adminbase')
 
-@section('tittle', "Agent Admin Panel Category Create")
+@section('title', "Agent Admin Panel Category Create")
 
+@section('description',$setting->description)
+@section('keywords',$setting->keywords)
+@section('icon',Storage::url($setting->icon))
+@section('content')
 
 @section('content')
 <div class="content-wrapper">
